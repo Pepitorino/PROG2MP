@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <types.h>
+#include "types.c"
 
 void print_dest(Destination* dest)
 {
@@ -27,8 +27,9 @@ void erase_lastdest(Destination* dest)
     return;
 }
 
-void dest_init(FILE* in, Destination* dest){
-    int x=1;
+int dest_init(FILE* in, Destination* dest)
+{
+    int x=1, num=0;
     char temp;
     in = fopen("destination.txt", "r");
     while(x){
@@ -38,20 +39,34 @@ void dest_init(FILE* in, Destination* dest){
         
         if (temp==EOF)
         {
+            num--;
             x=0;
         }
         fgets(dest->toDo, 100, in);
         dest->next=malloc(sizeof(Destination));
         dest->prev=dest;
         dest=dest->next;
+        num++;
     }
     fclose(in);
-    return 0;
+    return num;
 }
 
-int data_init(FILE* in, Destination* dest, Goals* bucket)
+void bucketlist_init(FILE* in, Goals* list)
 {
-    dest_init(in, dest);
+    int x=1;
+    in = fopen("bucketlist.txt", "r");
+    return;
+    while(x){
+
+    }
+
+}
+
+int data_init(FILE* in, Destination* dest, Goals* bucket, int *destno, int *listno)
+{
+    *destno = dest_init(in, dest);
+    bucketlist_init(in, bucket);
     erase_lastdest(dest);
     return 0;
 }
