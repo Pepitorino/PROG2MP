@@ -6,7 +6,8 @@
 
 typedef char str_t[STRSIZE];
 
-typedef struct Destination {
+typedef struct Destination 
+{
     str_t shortName;
     str_t longName;
     str_t country;
@@ -16,7 +17,8 @@ typedef struct Destination {
     struct Destination* prev;
 } Destination;
 
-typedef struct Goals {
+typedef struct Goals 
+{
     str_t shortName;
     int priorityRank;
     str_t remarks;
@@ -25,14 +27,16 @@ typedef struct Goals {
     struct Goals* prev;
 } Goals;
 
-struct DailyIte {
+struct DailyIte 
+{
     int day;
     str_t morning;
     str_t afternoon;
     str_t evening;
 };
 
-typedef struct TravelPlan {
+typedef struct TravelPlan 
+{
     str_t shortName;
     str_t startDate;
     struct DailyIte* itinerary;
@@ -40,20 +44,19 @@ typedef struct TravelPlan {
     str_t comment;
 } TravelPlan;   
 
-void print_dest(Destination* dest){
+void print_dest(Destination* dest)
+{
     while(dest->next!=NULL){
     	printf("\n%s", dest->shortName);
     	printf("\t%s", dest->longName);
     	printf("\n%s", dest->country);
     	printf("\n%s", dest->geoGroup);
     	printf("\n%s", dest->toDo);
-    	if (dest->next!=NULL) printf("%p\n", dest->next);
-    	if (dest->prev!=NULL) printf("%p\n", dest->prev);
         dest=dest->next;
 	}
 }
 
-int data_init(FILE* in, FILE* out, Destination* dest, Goals* bucket)
+int data_init(FILE* in, Destination* dest, Goals* bucket)
 {
     int x=1;
     char temp;
@@ -74,4 +77,14 @@ int data_init(FILE* in, FILE* out, Destination* dest, Goals* bucket)
     }
     fclose(in);
     return 0;
+}
+
+void erase_lastdest(Destination* dest){
+    while(dest->next->next!=NULL)
+    {
+        dest=dest->next;
+    }
+    free(dest);
+    dest->next=NULL;
+    return;
 }

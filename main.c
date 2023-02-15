@@ -8,7 +8,8 @@ int main (){
 				*root=dest;
     Goals *list=NULL;
     FILE *in=NULL, *out=NULL;
-    data_init(in, out, dest, list);
+    data_init(in, dest, list);
+    erase_lastdest(dest);
     dest=root;
     print_dest(dest);
     return 0;
