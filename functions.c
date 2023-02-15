@@ -1,48 +1,7 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
-
-#define STRSIZE 127
-
-typedef char str_t[STRSIZE];
-
-typedef struct Destination 
-{
-    str_t shortName;
-    str_t longName;
-    str_t country;
-    str_t geoGroup;
-    str_t toDo;
-    struct Destination* next;
-    struct Destination* prev;
-} Destination;
-
-typedef struct Goals 
-{
-    str_t shortName;
-    int priorityRank;
-    str_t remarks;
-    str_t achievedFlag;
-    struct Goals* next;
-    struct Goals* prev;
-} Goals;
-
-struct DailyIte 
-{
-    int day;
-    str_t morning;
-    str_t afternoon;
-    str_t evening;
-};
-
-typedef struct TravelPlan 
-{
-    str_t shortName;
-    str_t startDate;
-    struct DailyIte* itinerary;
-    int rating;
-    str_t comment;
-} TravelPlan;   
+#include <string.h>
+#include <types.h>
 
 void print_dest(Destination* dest)
 {
@@ -54,10 +13,21 @@ void print_dest(Destination* dest)
     	printf("\n%s", dest->toDo);
         dest=dest->next;
 	}
+    return;
 }
 
-int data_init(FILE* in, Destination* dest, Goals* bucket)
+void erase_lastdest(Destination* dest)
 {
+    while(dest->next->next!=NULL)
+    {
+        dest=dest->next;
+    }
+    free(dest);
+    dest->next=NULL;
+    return;
+}
+
+void dest_init(FILE* in, Destination* dest){
     int x=1;
     char temp;
     in = fopen("destination.txt", "r");
@@ -79,12 +49,9 @@ int data_init(FILE* in, Destination* dest, Goals* bucket)
     return 0;
 }
 
-void erase_lastdest(Destination* dest){
-    while(dest->next->next!=NULL)
-    {
-        dest=dest->next;
-    }
-    free(dest);
-    dest->next=NULL;
-    return;
+int data_init(FILE* in, Destination* dest, Goals* bucket)
+{
+    dest_init(in, dest);
+    erase_lastdest(dest);
+    return 0;
 }

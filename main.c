@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "functions.c"
+#include <types.h>
 
 int main (){
     Destination *dest=malloc(sizeof(Destination)), 
@@ -9,8 +9,5 @@ int main (){
     Goals *list=NULL;
     FILE *in=NULL, *out=NULL;
     data_init(in, dest, list);
-    erase_lastdest(dest);
-    dest=root;
-    print_dest(dest);
     return 0;
 }
