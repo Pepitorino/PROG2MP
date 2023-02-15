@@ -1,15 +1,15 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "functions.c"
 
 int main (){
-    int x=1;
-
-    do 
-    {
-        dashboard();
-        destlm();
-        bucklm();
-        tripm();
-    } while(x);
-
+    Destination *dest=malloc(sizeof(Destination)), 
+				*root=dest;
+    Goals *list=NULL;
+    FILE *in=NULL, *out=NULL;
+    data_init(in, out, dest, list);
+    dest=root;
+    print_dest(dest);
     return 0;
 }
