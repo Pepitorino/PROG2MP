@@ -1,26 +1,25 @@
+#ifndef TYPES
+
+#define TYPES
 #define STRSIZE 127
 
 typedef char str_t[STRSIZE];
 
 typedef struct Destination 
 {
-    str_t shortName;
     str_t longName;
+    str_t shortName;
     str_t country;
     str_t geoGroup;
     str_t toDo;
-    struct Destination* next;
-    struct Destination* prev;
 } Destination;
 
-typedef struct Goals 
+typedef struct Goals
 {
     str_t shortName;
     int priorityRank;
     str_t remarks;
     str_t achievedFlag;
-    struct Goals* next;
-    struct Goals* prev;
 } Goals;
 
 struct DailyIte 
@@ -39,3 +38,5 @@ typedef struct TravelPlan
     int rating;
     str_t comment;
 } TravelPlan;   
+
+#endif
