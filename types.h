@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #ifndef TYPES
 
 #define TYPES
@@ -22,19 +24,19 @@ typedef struct Goals
     str_t achievedFlag;
 } Goals;
 
-struct DailyIte 
+typedef struct DailyIte 
 {
     int day;
     str_t morning;
     str_t afternoon;
     str_t evening;
-};
+} DailyIte;
 
 typedef struct TravelPlan 
 {
     str_t shortName;
     str_t startDate;
-    struct DailyIte* itinerary;
+    FILE* itinerary;
     int rating;
     str_t comment;
 } TravelPlan;   
