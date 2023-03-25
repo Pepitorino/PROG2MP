@@ -18,8 +18,9 @@ dest_init (Destination* data)
     {
         fscanf(f1, "%s %s", data[i].shortName, data[i].longName);
         fscanf(f1, "%s", data[i].country);
-        fscanf(f1, "%[^\n]s", data[i].geoGroup);
-        fscanf(f1, "%[^\n]s", data[i].toDo);
+        fscanf(f1, "%s", data[i].geoGroup);
+        temp = getc(f1);
+        fgets(data[i].toDo, 100, f1);
         n++;
     }
 
@@ -38,7 +39,7 @@ bucketlist_init (Goals* data)
     FILE* f1;
     f1 = fopen("bucketlist.txt", "r");
 
-    for (i=0;!feof(f1);i++)
+    for (i=0;i<n;i++)
     {
         fscanf(f1, "%s", data[i].shortName);
         fscanf(f1, "%d", &data[i].priorityRank);

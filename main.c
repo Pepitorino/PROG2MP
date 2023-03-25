@@ -18,10 +18,10 @@ main()
 
     int option;
 
-    printf("%33s", "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    printf("%33s", "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     printf("\nYET ANOTHER TRAVEL APPLICATION (YATA)\n");
-    printf("%33s", "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    printf("%33s", "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
-    printMenu();
+    mainMenu(travelDestinations, bucketList, &destnum, &bucketlistnum);
     return 0;
 }
