@@ -21,7 +21,7 @@ typedef struct Goals
     str_t shortName;
     int priorityRank;
     str_t remarks;
-    str_t achievedFlag;
+    int achievedFlag;
 } Goals;
 
 typedef struct DailyIte 

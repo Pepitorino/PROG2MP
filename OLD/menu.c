@@ -32,18 +32,18 @@ mainMenu(Destination* dest, Goals* bucketlist, int *dn, int *bn)
 
         switch(choice)
         {
-            case 1: 
-                printDashboard();
-                break;
+            // case 1: 
+            //     printDashboard();
+            //     break;
             case 2:
                 destman(dest, dn);
                 break;
-            case 3:
-                buckman();
-                break;
-            case 4:
-                tripman();
-                break;
+            // case 3:
+            //     buckman();
+            //     break;
+            // case 4:
+            //     tripman();
+            //     break;
             case 5:
                 printf("GOODBYE");
                 break;
