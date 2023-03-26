@@ -12,7 +12,10 @@ dest_init (Destination* data)
     FILE* f1;
     f1 = fopen("destination.txt", "r");
 
-    if (f1==NULL) return n;
+    if (f1==NULL)
+    {
+        f1=fopen("bucketlist.txt", "w+");
+    }
 
     for (i=0;!feof(f1);i++)
     {
@@ -39,7 +42,12 @@ bucketlist_init (Goals* data)
     FILE* f1;
     f1 = fopen("bucketlist.txt", "r");
 
-    for (i=0;i<n;i++)
+    if (f1==NULL)
+    {
+        f1=fopen("bucketlist.txt", "w+");
+    }
+
+    for (i=0;i<n&&!feof(f1);i++)
     {
         fscanf(f1, "%s", data[i].shortName);
         fscanf(f1, "%d", &data[i].priorityRank);

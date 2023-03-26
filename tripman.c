@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 void
-displayList (int n)
+displayTripList (int n)
 {
 
 }
@@ -40,6 +40,6 @@ rateIte ()
 void
 tripman ()
 {
-    
+
 }
 

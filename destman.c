@@ -39,7 +39,7 @@ addDest (Destination* dest, int *n)
     printf("\nGEOGROUP\t: ");
     scanf("%s", dest[*n].geoGroup);
     printf("\nTO DO\t\t: ");
-    scanf("%s", dest[*n].toDo);
+    scanf("%[\n]s", dest[*n].toDo);
     *n+=1;
 }
 
