@@ -30,13 +30,14 @@ typedef struct DailyIte
     str_t morning;
     str_t afternoon;
     str_t evening;
+    struct DailyIte* next;
 } DailyIte;
 
 typedef struct TravelPlan 
 {
     str_t shortName;
     str_t startDate;
-    FILE* itinerary;
+    DailyIte itinerary;
     int rating;
     str_t comment;
 } TravelPlan;   

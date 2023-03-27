@@ -69,9 +69,10 @@ deleteDest (Destination* dest, int *n)
         }
     } while (k==-1);
 
-    for (k;k<*n;k++)
+    while(k<*n)
     {
         dest[k]=dest[k+1];
+        k++;
     }
 
     *n-=1;

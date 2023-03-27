@@ -44,9 +44,9 @@ mainMenu(Destination* dest, Goals* bucketlist, int *dn, int *bn)
             case 2:
                 destman(dest, dn);
                 break;
-            // case 3:
-            //     buckman();
-            //     break;
+            case 3:
+                buckman(bucketlist, bn);
+                break;
             // case 4:
             //     tripman();
             //     break;
@@ -63,7 +63,6 @@ mainMenu(Destination* dest, Goals* bucketlist, int *dn, int *bn)
 int
 main()
 {
-    int i=0;
     Destination travelDestinations[101]; //max 100 elements, extra element is for the space at the bottom of the txt file
     Goals bucketList[11]; //max 11 elements, extra element for last space at the bottom of the txt file
     int destnum, bucketlistnum;
@@ -71,11 +70,11 @@ main()
     destnum=dest_init(travelDestinations);
     bucketlistnum=bucketlist_init(bucketList);
 
-    int option;
-
     printf("%33s", "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     printf("\nYET ANOTHER TRAVEL APPLICATION (YATA)\n");
     printf("%33s", "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+    printf("\n%d %d\n", destnum, bucketlistnum);
 
     mainMenu(travelDestinations, bucketList, &destnum, &bucketlistnum);
     return 0;
