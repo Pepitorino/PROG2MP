@@ -6,14 +6,16 @@
 #define TWOLEN 21
 #define THREELEN 31
 #define TENLEN 101
+#define STRING 127
 
 typedef char longName[LONG];
 typedef char shortName[SHORT];
 typedef char shortDesc[TWOLEN];
 typedef char medDesc[THREELEN];
 typedef char longDesc[TENLEN];
+typedef char str_t[STRING];
 
-typedef struct Destinations
+typedef struct Destination
 {
     longName longName;
     shortName shortName;
@@ -21,7 +23,7 @@ typedef struct Destinations
     shortDesc geoGroup;
     longDesc toDo;
 
-} destinations;
+} destination;
 
 typedef struct Goal 
 {
@@ -36,17 +38,18 @@ typedef struct Itinerary
     int day;
     medDesc morning;
     medDesc afternoon;
-    medDesc Evening;
+    medDesc evening;
     struct Itinerary* next;
 } itinerary;
 
 typedef struct TravelPlan 
 {
     shortName shortName;
-    shortName startDate; //Also used shortname typedef for the start date because it should also be unique;
-    itinerary itinerary;
+    shortName startDate; //Also used shortname typedef for the start date because they are both 10 characters and should also be unique;
     float rating;
     longDesc comments;
+    itinerary itinerary;
+    struct TravelPlan* next;
 } travelPlan;
 
 #endif  

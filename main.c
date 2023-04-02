@@ -1,7 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <dirent.h>
+#include "types.h"
+#include "data_init.c"
+#include "dest_man.c"
+#include "trip_man.c"
+#include "buck_man.c"
+#include "input_validation.c"
 
 void
 printMenu()
@@ -13,17 +18,25 @@ printMenu()
     printf("\nBUCKET LIST MANAGEMENT(3)");
     printf("\nTRIP MANAGEMENT(4)");
     printf("\nQUIT (5)");
-    printf("\nWHERE WOULD YOU LIKE TO GO? (1-5): ");
 }
 
 void 
-mainMenu()
+mainMenu(destination* dest, 
+        goal* bucketlist, 
+        travelPlan* trips, 
+        int destnum, 
+        int bucketlistnum, 
+        int tripnum)
 {
     int choice;
     do
     {
         printMenu();
+        do {
+        printf("\nWHERE WOULD YOU LIKE TO GO? (1-5): ");
         scanf("%d", &choice);
+        if (choice<1||choice>5) printf("\nINVALID CHOICE\n");
+        } while (choice<1||choice>5);
 
     } while (choice!=5);
     
@@ -32,20 +45,21 @@ mainMenu()
 int
 main()
 {
-    int destnum, bucketlistnum;
+    int destnum, bucketlistnum, tripnum;
+    destination destinations[101];
+    goal bucketlist[11];
+    travelPlan* trips=calloc(1, sizeof(travelPlan));
 
     printf("%33s", "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     printf("\nYET ANOTHER TRAVEL APPLICATION (YATA)\n");
     printf("%33s", "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
-    DIR* dir = opendir(".");
-    struct dirent* entity;
+    init(destinations, 
+        bucketlist, 
+        trips, 
+        &destnum, &bucketlistnum, &tripnum);
+    // mainMenu(destinations, bucketlist, trips, destnum, bucketlistnum, tripnum);
 
-    entity = readdir(dir);
-    while (entity=readdir(dir))
-    {
-        printf("%s\n", entity->d_name);
-    }
-
+    longDisplay(destinations, destnum);
     return 0;
 }
