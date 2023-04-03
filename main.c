@@ -7,6 +7,7 @@
 #include "trip_man.c"
 #include "buck_man.c"
 #include "input_validation.c"
+#include "data_save.c"
 
 void
 printMenu()
@@ -59,7 +60,6 @@ main()
         trips, 
         &destnum, &bucketlistnum, &tripnum);
     // mainMenu(destinations, bucketlist, trips, destnum, bucketlistnum, tripnum);
-
-    longDisplay(destinations, destnum);
+    displayTrips(trips, tripnum);
     return 0;
 }

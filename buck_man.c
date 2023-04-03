@@ -1,6 +1,3 @@
-#include "types.h"
-#include <stdio.h>
-
 void 
 displayBucketlist(goal* bucketlist, int n)
 {
@@ -32,7 +29,7 @@ changeAchieved(goal* bucketlist, int n)
 }
 
 void
-buckMan(goal* bucketlist, int n)
+buckMenu(goal* bucketlist, int n)
 {
     
 }

@@ -51,7 +51,7 @@ destInit (destination* data)
     {
         fscanf(f1, " %s %s", data[i].shortName, data[i].longName);
         fscanf(f1, " %s", data[i].country);
-        fscanf(f1, " %s", data[i].geoGroup);
+        fscanf(f1, " %[^\n]", data[i].geoGroup);
         getc(f1);
         fgets(data[i].toDo, TENLEN, f1);
         n++;

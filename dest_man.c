@@ -1,6 +1,3 @@
-#include "types.h"
-#include <stdio.h>
-
 void
 shortDisplay(destination* dest, 
             int n)
@@ -34,7 +31,7 @@ void
 addDestination(destination* dest,
             int n)
 {
-
+    
 }
 
 void
@@ -52,7 +49,7 @@ editDestination(destination* dest,
 }
 
 void
-destMan(destination* dest,
+destMenu(destination* dest,
         int n)
 {
 
