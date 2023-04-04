@@ -31,10 +31,10 @@ void
 addDestination(destination* dest,
             int *n)
 {
-    printf("Enter Short name: ");
+    printf("Enter Shortname: ");
     scanf(" %10[^\n]%*[^\n]", dest[*n].shortName);
 
-    printf("Enter Long name: ");
+    printf("Enter Longname: ");
     scanf(" %50[^\n]%*[^\n]", dest[*n].longName);
 
     printf("Enter Country: ");
@@ -112,22 +112,22 @@ editDestination(destination* dest,
                     case 1:
                         printf("\nOLD LONGNAME: %s", dest[i].longName);
                         printf("\nEnter new longname: "); 
-                        scanf("%s", dest[i].longName);
+                        scanf("%50[^\n]", dest[i].longName);
                         break;
                     case 2:
                         printf("\nOLD COUNTRY: %s", dest[i].country);
                         printf("\nEnter new country: "); 
-                        scanf("%s", dest[i].country);
+                        scanf("%20[^\n]", dest[i].country);
                         break;
                     case 3:
                         printf("\nOLD GEOGRAPHIC GROUP: %s", dest[i].geoGroup);
                         printf("\nEnter new geographic group: "); 
-                        scanf("%s", dest[i].geoGroup);
+                        scanf("%20[^\n]", dest[i].geoGroup);
                         break;
                     case 4:
                         printf("\nOLD ACTIVITIES TO DO: %s", dest[i].toDo);
                         printf("\nEnter new activities to do: "); 
-                        scanf("%s", dest[i].toDo);
+                        scanf("%100[^\n]", dest[i].toDo);
                     case 5: break;                    
                     default: printf("\nINVALID\n");
                 }
@@ -151,7 +151,7 @@ destMenu(destination* dest,
         printf("\n3. ADD DESTINATION");
         printf("\n4. DELETE DESTINATION");
         printf("\n5. EDIT DESTINATION");
-        printf("\n6. EXIT");
+        printf("\n6. BACK TO MAIN MENU");
         printf("\nWhat would you like to do: ");
         scanf(" %d%*[^\n]", &choice);
         switch(choice)
