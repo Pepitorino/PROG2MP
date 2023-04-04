@@ -52,8 +52,7 @@ destInit (destination* data)
         fscanf(f1, " %s %s", data[i].shortName, data[i].longName);
         fscanf(f1, " %s", data[i].country);
         fscanf(f1, " %[^\n]", data[i].geoGroup);
-        getc(f1);
-        fgets(data[i].toDo, TENLEN, f1);
+        fscanf(f1, " %[^\n]", data[i].toDo);
         n++;
     }
 
@@ -75,7 +74,7 @@ buckInit (goal* data)
     {
         fscanf(f1, " %s", data[i].shortName);
         fscanf(f1, " %d", &data[i].prioRank);
-        fgets(data[i].remarks, TENLEN, f1);
+        fscanf(f1, " %[^\n]", data[i].remarks);
         fscanf(f1, " %d", &data[i].flag);
         num++;
     }
@@ -130,13 +129,13 @@ iteInit (travelPlan* trips,
         fscanf(f1, " %s", trips->comments);
         fscanf(f1, " %s", temp);
         trips->itinerary.day=atoi(temp);
-        fscanf(f1, " %*s");
-        fgets(trips->itinerary.morning, THREELEN, f1);
-        fscanf(f1, " %*s");
-        fgets(trips->itinerary.afternoon, THREELEN, f1);
-        fscanf(f1, " %*s");
-        fgets(trips->itinerary.evening, THREELEN, f1);
-        fscanf(f1, " ");
+        fscanf(f1, " %*[^\n]");
+        fscanf(f1, " %30[^\n]", trips->itinerary.morning);
+        fscanf(f1, " %*[^\n]");
+        fscanf(f1, " %30[^\n]", trips->itinerary.afternoon);
+        fscanf(f1, " %*[^\n]");
+        fscanf(f1, " %30[^\n]", trips->itinerary.evening);
+        fscanf(f1, " %*[^\n]");
 
         trips=trips->next;
         fclose(f1);

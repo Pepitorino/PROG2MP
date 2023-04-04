@@ -1,5 +1,4 @@
 #include "types.h"
-#include <stdio.h>
 
 void
 inputDate()
@@ -14,7 +13,38 @@ inputRating()
 }
 
 void
-inputRemarks()
+inputText(char* text, int length)
 {
 
+}
+
+int shortNameValidationDestination(destination* data, 
+                        str_t temp, 
+                        int *n)
+{
+    int i=0;
+    for (i=0;i<*n;i++)
+    {
+        if (!strcmp(data[i].shortName, temp)) return 1;
+    }
+    return 0;
+}
+
+int shortNameValidationGoal(goal* data, 
+                        str_t temp, 
+                        int *n)
+{
+    int i=0;
+    for (i=0;i<*n;i++)
+    {
+        if (!strcmp(data[i].shortName, temp)) return 1;
+    }
+    return 0;
+}
+
+int shortNameValidationTrip(travelPlan* trips,
+                            str_t temp,
+                            int *n)
+{
+    return 0;
 }

@@ -2,11 +2,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include "types.h"
+#include "input_validation.c"
 #include "data_init.c"
 #include "dest_man.c"
 #include "trip_man.c"
 #include "buck_man.c"
-#include "input_validation.c"
 #include "data_save.c"
 
 void
@@ -14,11 +14,11 @@ printMenu()
 {
     printf("\n\nMENU");
     printf("\nOPTIONS:");
-    printf("\nSHOW DASHBOARD(1)");
-    printf("\nDESTINATION LIST MANAGEMENT(2)");
-    printf("\nBUCKET LIST MANAGEMENT(3)");
-    printf("\nTRIP MANAGEMENT(4)");
-    printf("\nQUIT (5)");
+    printf("\n1. SHOW DASHBOARD");
+    printf("\n2. DESTINATION LIST MANAGEMENT");
+    printf("\n3. BUCKET LIST MANAGEMENT");
+    printf("\n4. TRIP MANAGEMENT");
+    printf("\n5. QUIT");
 }
 
 void 
@@ -60,6 +60,6 @@ main()
         trips, 
         &destnum, &bucketlistnum, &tripnum);
     // mainMenu(destinations, bucketlist, trips, destnum, bucketlistnum, tripnum);
-    displayTrips(trips, tripnum);
+    destMenu(destinations, &destnum);
     return 0;
 }

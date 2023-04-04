@@ -8,8 +8,8 @@
 #define TENLEN 101
 #define STRING 127
 
-typedef char longName[LONG];
 typedef char shortName[SHORT];
+typedef char longName[LONG];
 typedef char shortDesc[TWOLEN];
 typedef char medDesc[THREELEN];
 typedef char longDesc[TENLEN];
@@ -17,8 +17,8 @@ typedef char str_t[STRING];
 
 typedef struct Destination
 {
-    longName longName;
     shortName shortName;
+    longName longName;
     shortDesc country;
     shortDesc geoGroup;
     longDesc toDo;
