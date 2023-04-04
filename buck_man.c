@@ -36,7 +36,7 @@ addGoal(goal* bucketlist, int *n)
     {
         printf("Achieved? (Y/N):");
         scanf(" %c", &choice);
-        if (!checkYesOrNo(choice)) printf("\nInvalid");
+        if (!checkYesOrNo(choice)) printf("\nInvalid\n");
     } while (!checkYesOrNo(choice));
 
     bucketlist[*n].flag=checkYesOrNo(choice);
@@ -111,7 +111,7 @@ editGoal(goal* bucketlist, int *n)
                     case 2:
                         printf("\nOLD REMARKS: %s", bucketlist[i].remarks);
                         printf("\nEnter new remarks: "); 
-                        scanf(" %30[^\n]", bucketlist[i].remarks);
+                        scanf(" %30[^\n]%*[^\n]", bucketlist[i].remarks);
                         break;
                     case 5: break;                    
                     default: printf("\nINVALID\n");
@@ -162,7 +162,8 @@ buckMenu(goal* bucketlist, int *n)
         printf("\n5. MARK/UNMARK AS ACHIEVED");
         printf("\n6. BACK TO MAIN MENU");
         printf("\nWhat would you like to do: ");
-        scanf(" %d%*[^\n]", &choice);
+        scanf(" %d", &choice);
+        fflush(stdin);
         switch(choice)
         {
             case 1: displayBucketlist(bucketlist, *n); break;

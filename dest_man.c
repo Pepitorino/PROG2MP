@@ -31,19 +31,19 @@ void
 addDestination(destination* dest,
             int *n)
 {
-    printf("Enter Shortname: ");
+    printf("Enter Shortname (10 max length): ");
     scanf(" %10[^\n]%*[^\n]", dest[*n].shortName);
 
-    printf("Enter Longname: ");
+    printf("Enter Longname (50 max length): ");
     scanf(" %50[^\n]%*[^\n]", dest[*n].longName);
 
-    printf("Enter Country: ");
+    printf("Enter Country (20 max length): ");
     scanf(" %20[^\n]%*[^\n]", dest[*n].country);
 
-    printf("Enter Geographic Group: ");
+    printf("Enter Geographic Group (20 max length): ");
     scanf(" %20[^\n]%*[^\n]", dest[*n].geoGroup);
 
-    printf("Enter \"Activites to do\": ");
+    printf("Enter \"Activites to do\" (100 max length): ");
     scanf(" %100[^\n]%*[^\n]", dest[*n].toDo);
 
     *n+=1;
@@ -106,28 +106,29 @@ editDestination(destination* dest,
                 printf("\n4. ACTIVITIES TO DO");
                 printf("\n5. EXIT");
                 printf("\nWHERE WOULD YOU LIKE TO GO: ");
-                scanf(" %d%*[^\n]", &choice);
+                scanf(" %d", &choice);
+                fflush(stdin);
                 switch(choice)
                 {
                     case 1:
                         printf("\nOLD LONGNAME: %s", dest[i].longName);
-                        printf("\nEnter new longname: "); 
-                        scanf("%50[^\n]", dest[i].longName);
+                        printf("\nEnter new longname (50 max length): "); 
+                        scanf("%50[^\n]%*[^\n]", dest[i].longName);
                         break;
                     case 2:
                         printf("\nOLD COUNTRY: %s", dest[i].country);
-                        printf("\nEnter new country: "); 
-                        scanf("%20[^\n]", dest[i].country);
+                        printf("\nEnter new country (20 max length): "); 
+                        scanf("%20[^\n]%*[^\n]", dest[i].country);
                         break;
                     case 3:
                         printf("\nOLD GEOGRAPHIC GROUP: %s", dest[i].geoGroup);
-                        printf("\nEnter new geographic group: "); 
-                        scanf("%20[^\n]", dest[i].geoGroup);
+                        printf("\nEnter new geographic group (20 max length): "); 
+                        scanf("%20[^\n]%*[^\n]", dest[i].geoGroup);
                         break;
                     case 4:
                         printf("\nOLD ACTIVITIES TO DO: %s", dest[i].toDo);
-                        printf("\nEnter new activities to do: "); 
-                        scanf("%100[^\n]", dest[i].toDo);
+                        printf("\nEnter new activities to do (100 max length): "); 
+                        scanf("%100[^\n]%*[^\n]", dest[i].toDo);
                     case 5: break;                    
                     default: printf("\nINVALID\n");
                 }
@@ -153,7 +154,8 @@ destMenu(destination* dest,
         printf("\n5. EDIT DESTINATION");
         printf("\n6. BACK TO MAIN MENU");
         printf("\nWhat would you like to do: ");
-        scanf(" %d%*[^\n]", &choice);
+        scanf(" %d", &choice);
+        fflush(stdin);
         switch(choice)
         {
             case 1: shortDisplay(dest, *n); break;
