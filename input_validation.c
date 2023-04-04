@@ -48,3 +48,17 @@ int shortNameValidationTrip(travelPlan* trips,
 {
     return 0;
 }
+
+int checkYesOrNo(char c)
+{
+    switch(c)
+    {
+        case 'y':
+        case 'Y':
+        return 1;
+        case 'n':
+        case 'N':
+        return -1;
+    }
+    return 0;
+}
