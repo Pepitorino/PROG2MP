@@ -118,29 +118,6 @@ iteInit (travelPlan* trips,
     travelPlan* start;
     start=trips;
 
-    for(i=0;i<n;i++)
-    {
-        strcpy(temp, trips->shortName);
-        strcat(temp, "-itinerary.txt");
-        f1=fopen(temp, "r");
-
-        fscanf(f1, " %s", trips->startDate);
-        fscanf(f1, " %f", &trips->rating);
-        fscanf(f1, " %s", trips->comments);
-        fscanf(f1, " %s", temp);
-        trips->itinerary.day=atoi(temp);
-        fscanf(f1, " %*[^\n]");
-        fscanf(f1, " %30[^\n]", trips->itinerary.morning);
-        fscanf(f1, " %*[^\n]");
-        fscanf(f1, " %30[^\n]", trips->itinerary.afternoon);
-        fscanf(f1, " %*[^\n]");
-        fscanf(f1, " %30[^\n]", trips->itinerary.evening);
-        fscanf(f1, " %*[^\n]");
-
-        trips=trips->next;
-        fclose(f1);
-    }
-
     trips=start;
 }
 
