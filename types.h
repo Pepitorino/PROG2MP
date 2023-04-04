@@ -48,6 +48,7 @@ typedef struct TravelPlan
     shortName startDate; //Also used shortname typedef for the start date because they are both 10 characters and should also be unique;
     float rating;
     longDesc comments;
+    int days;
     itinerary itinerary;
     struct TravelPlan* next;
 } travelPlan;
