@@ -49,10 +49,10 @@ destInit (destination* data)
 
     for (i=0;!feof(f1);i++)
     {
-        fscanf(f1, " %s %s", data[i].shortName, data[i].longName);
-        fscanf(f1, " %s", data[i].country);
-        fscanf(f1, " %[^\n]", data[i].geoGroup);
-        fscanf(f1, " %[^\n]", data[i].toDo);
+        fscanf(f1, " %10[^\n] %50[^\n]", data[i].shortName, data[i].longName);
+        fscanf(f1, " %30[^\n]", data[i].country);
+        fscanf(f1, " %30[^\n]", data[i].geoGroup);
+        fscanf(f1, " %100[^\n]", data[i].toDo);
         n++;
     }
 
@@ -72,7 +72,7 @@ buckInit (goal* data)
 
     for (i=0;!feof(f1);i++)
     {
-        fscanf(f1, " %s", data[i].shortName);
+        fscanf(f1, " %10[^\n]", data[i].shortName);
         fscanf(f1, " %d", &data[i].prioRank);
         fscanf(f1, " %[^\n]", data[i].remarks);
         fscanf(f1, " %d", &data[i].flag);
@@ -97,7 +97,7 @@ tripInit (travelPlan* trips)
 
     for (i=0;!feof(f1);i++)
     {
-        fscanf(f1, " %s", trips->shortName);
+        fscanf(f1, " %10[^\n]", trips->shortName);
         trips->next=calloc(1, sizeof(travelPlan));
         trips=trips->next;
         num++;
@@ -112,11 +112,37 @@ void
 iteInit (travelPlan* trips, 
         int n)
 {
-    int i=0;
+    int i=0, j=0;
     FILE* f1;
     str_t temp;
+    str_t tempdate;
     travelPlan* start;
     start=trips;
+    for(i=0;i<n;i++)
+    {
+        strcpy(temp, trips->shortName);
+        strcat(temp, "-itinerary.txt");
+        f1=fopen(temp, "r");
+
+        fscanf(f1, " %s", trips->startDate);
+        fscanf(f1, " %f", &trips->rating);
+        fscanf(f1, " %[^\n]", trips->comments);
+        for (j=-1;!feof(f1);j++)
+        {
+            fscanf(f1, " %s", tempdate);
+            trips->itinerary.day=atoi(tempdate);
+            fscanf(f1, " %*[^\n]");
+            fscanf(f1, " %30[^\n]", trips->itinerary.morning);
+            fscanf(f1, " %*[^\n]");
+            fscanf(f1, " %30[^\n]", trips->itinerary.afternoon);
+            fscanf(f1, " %*[^\n]");
+            fscanf(f1, " %30[^\n]", trips->itinerary.evening);
+            fscanf(f1, " %*[^\n]");
+        }
+        trips->days=j;
+        trips=trips->next;
+        fclose(f1);
+    }
 
     trips=start;
 }

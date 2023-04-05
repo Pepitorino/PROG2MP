@@ -60,6 +60,7 @@ main()
         trips, 
         &destnum, &bucketlistnum, &tripnum);
     // mainMenu(destinations, bucketlist, trips, destnum, bucketlistnum, tripnum);
-    buckMenu(bucketlist, &bucketlistnum);
+    buckMenu(destinations, bucketlist, &bucketlistnum, &destnum);
+    // destMenu(destinations, &destnum);
     return 0;
 }

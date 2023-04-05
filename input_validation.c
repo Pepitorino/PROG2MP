@@ -46,6 +46,21 @@ int shortNameValidationTrip(travelPlan* trips,
                             str_t temp,
                             int *n)
 {
+    int i=0;
+    travelPlan* start;
+    start=trips;
+
+    for(i=0;i<*n;i++)
+    {
+        if (!strcmp(trips->shortName, temp)) 
+        {
+            trips=start;
+            return 1;
+        }
+        trips=trips->next;
+        i++;
+    }
+    trips=start;
     return 0;
 }
 

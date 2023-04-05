@@ -14,22 +14,29 @@ displayBucketlist(goal* bucketlist, int n)
 }
 
 void
-addGoal(goal* bucketlist, int *n)
+addGoal(destination* destinations, goal* bucketlist, int *n, int *dn)
 {
     char choice;
-
-    printf("Enter Shortname: ");
-    scanf(" %10[^\n]%*[^\n]", bucketlist[*n].shortName);
+    int i=0;
 
     do
     {
-    printf("Enter Priority Ranking(1-10): ");
-    scanf(" %d", &bucketlist[*n].prioRank);
-    fflush(stdin);
-    if (bucketlist[*n].prioRank>10||bucketlist[*n].prioRank<1) printf("\nINVALID\n");
+        if (i<0) printf("\nINVALID\n");
+        printf("Enter Shortname from list of Destinations (10 max length): ");
+        scanf(" %10[^\n]", bucketlist[*n].shortName);
+        i++;
+    } while (!shortNameValidationDestination(destinations, bucketlist[*n].shortName, dn));
+    
+
+    do
+    {
+        printf("Enter Priority Ranking(1-10): ");
+        scanf(" %d", &bucketlist[*n].prioRank);
+        fflush(stdin);
+        if (bucketlist[*n].prioRank>10||bucketlist[*n].prioRank<1) printf("\nINVALID\n");
     } while (bucketlist[*n].prioRank>10||bucketlist[*n].prioRank<1);
 
-    printf("Enter Remarks: ");
+    printf("Enter Remarks (30 max length): ");
     scanf(" %30[^\n]%*[^\n]", bucketlist[*n].remarks);
 
     do
@@ -94,6 +101,7 @@ editGoal(goal* bucketlist, int *n)
                 printf("\nEDIT GOAL %s", temp);
                 printf("\n1. PRIORITY RANK");
                 printf("\n2. REMARKS");
+                printf("\n3. EXIT");
                 printf("\nWHERE WOULD YOU LIKE TO GO: ");
                 scanf(" %d", &choice);
                 fflush(stdin);
@@ -104,7 +112,7 @@ editGoal(goal* bucketlist, int *n)
                         {
                             printf("\nOLD PRIORITY RANK: %d", bucketlist[i].prioRank);
                             printf("\nEnter new priority rank(1-10): "); 
-                            scanf(" %d", bucketlist[i].prioRank);
+                            scanf(" %d", &bucketlist[i].prioRank);
                             if (bucketlist[i].prioRank>10||bucketlist[i].prioRank<1) printf("\nINVALID\n");
                         } while (bucketlist[i].prioRank>10||bucketlist[i].prioRank<1);
                         break;
@@ -113,10 +121,10 @@ editGoal(goal* bucketlist, int *n)
                         printf("\nEnter new remarks: "); 
                         scanf(" %30[^\n]%*[^\n]", bucketlist[i].remarks);
                         break;
-                    case 5: break;                    
+                    case 3: break;                    
                     default: printf("\nINVALID\n");
                 }
-            } while (choice!=5);
+            } while (choice!=3);
             i=*n;
         }
     }
@@ -148,7 +156,7 @@ changeAchieved(goal* bucketlist, int *n)
 }
 
 void
-buckMenu(goal* bucketlist, int *n)
+buckMenu(destination* destinations, goal* bucketlist, int *n, int* dn)
 {
     int choice;
     do
@@ -167,7 +175,7 @@ buckMenu(goal* bucketlist, int *n)
         switch(choice)
         {
             case 1: displayBucketlist(bucketlist, *n); break;
-            case 2: addGoal(bucketlist, n); break;
+            case 2: addGoal(destinations, bucketlist, n, dn); break;
             case 3: deleteGoal(bucketlist, n); break;
             case 4: editGoal(bucketlist, n); break;
             case 5: changeAchieved(bucketlist, n); break;
