@@ -62,7 +62,8 @@ main()
     // mainMenu(destinations, bucketlist, trips, destnum, bucketlistnum, tripnum);
     longDisplay(destinations, destnum);
     // buckMenu(destinations, bucketlist, &bucketlistnum, &destnum);
-    destMenu(destinations, &destnum);
+    // destMenu(destinations, &destnum);
+    tripMenu(destinations, trips, &tripnum, &destnum);
     // destMenu(destinations, &destnum);
     return 0;
 }

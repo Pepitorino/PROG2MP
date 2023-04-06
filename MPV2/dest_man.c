@@ -208,7 +208,7 @@ destMenu(destination* dest,
             case 2: longDisplay(dest, *n); break;
             case 3: 
                 if (*n<100) addDestination(dest, n); 
-                else printf("\nMAX DESTINATIONS REACHED\n⌈");
+                else printf("\nMAX DESTINATIONS REACHED\n");
                 break;
             case 4: deleteDestination(dest, n); break;
             case 5: editDestination(dest, n); break;

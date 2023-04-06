@@ -3,6 +3,7 @@ displayTrips(travelPlan* trips,
             int n)
 {
         int i=0;
+        travelPlan* start=trips;
 
         for (i=0;i<n;i++)
         {
@@ -12,6 +13,8 @@ displayTrips(travelPlan* trips,
                 else printf("\nRating: No rating available");
                 trips=trips->next;
         }
+
+        trips=start;
 }
 
 void
@@ -55,31 +58,73 @@ addTrip(destination* destinations,
         int i=0;
         str_t temp;
         travelPlan* start=trips;
+        itinerary* iteStart, *ite;
 
         for(i=0;i<*n;i++)
         {
                 trips=trips->next;
         }
 
-        trips->next=calloc(1, sizeof(travelPlan));
-        trips=trips->next;
+        trips=calloc(1, sizeof(travelPlan));
+        iteStart=&(trips->itinerary);
+        ite=iteStart;
 
         do
         {
                 if (i>0) printf("\nINVALID\n\n");
                 printf("Enter Shortname from list of Destinations (10 max length): ");
-                scanf(" %10[^\n]%*[^\n]", temp);
+                scanf(" %10[^\n]%*[^\n]", trips->shortName);
                 i++;
-        } while (!shortNameValidationDestination(destinations, temp, dn));
-        strcpy(trips->shortName, temp);
+        } while (!shortNameValidationDestination(destinations, trips->shortName, dn));
 
-        printf("Enter Startdate (dd/mm/yyyy): ");
+
+        i=0;
+        do
+        {
+                if (i>0) printf("\nINVALID\n");
+                printf("Enter Startdate (mm/dd/yyyy): ");
+                scanf(" %[^\n]", trips->startDate);
+        } while (inputDate(trips->startDate));
+
+        printf("\n%s\n", trips->startDate);
+
         printf("Enter rating (0.0-5.0): ");
-        printf("Enter comments (100 max length): ");
-        printf("How many days will the itinerary be? ");
-        printf("Morning activity for day N");
-        printf("Afternoon activity for day N");
-        printf("Evening activity for day N");
+
+        do 
+        {
+               printf("\nEnter comments (100 max length): ");
+               scanf(" %[^\n]", trips->comments);
+        } while(InputValidation(trips->comments, 100));
+
+        do
+        {
+                printf("How many days will the itinerary be? ");
+                scanf(" %d", &trips->days);
+                if (trips->days<=0) printf("\nINVALID\n");
+        } while(trips->days<=0);
+
+        for (i=0;i<trips->days;i++)
+        {       
+                do
+                {
+                        printf("Morning activity for day N");
+                        scanf("%20[^\n]%*[^\n]", trips->itinerary.morning);
+                } while (InputValidation(ite->morning, 20));
+                
+                do
+                {
+                        printf("Afternoon activity for day N");
+                        scanf("%20[^\n]%*[^\n]", trips->itinerary.afternoon);
+                } while (InputValidation(ite->afternoon, 20));
+                
+                do
+                {
+                        printf("Evening activity for day N");
+                        scanf("%20[^\n]%*[^\n]", trips->itinerary.evening);
+                } while (InputValidation(ite->evening, 20));
+                ite->next=calloc(1, sizeof(itinerary));
+                ite=ite->next;
+        }
 
         trips=start;
 
@@ -199,8 +244,34 @@ rateTrip(travelPlan* trips,
 }
 
 void
-tripMenu(travelPlan* trips, 
-        int n)
+tripMenu(destination* destinations, travelPlan* trips, 
+        int *n, int *dn)
 {
-
+        int choice;
+        do
+        {
+                printf("\n\nTRIPS MENU");
+                printf("\nOPTIONS:");
+                printf("\n1. VIEW ALL TRIPS");
+                printf("\n2. VIEW TRIP ITINERARY");
+                printf("\n3. ADD TRIP");
+                printf("\n4. DELETE TRIP");
+                printf("\n5. EDIT TRIP");
+                printf("\n6. RATE TRIP");
+                printf("\n7. BACK TO MAIN MENU");
+                printf("\nWhat would you like to do: ");
+                scanf(" %d", &choice);
+                fflush(stdin);
+                switch(choice)
+                {
+                case 1: displayTrips(trips, *n); break;
+                case 2: viewIte(trips, n); break;
+                case 3: addTrip(destinations, trips, n, dn); break;
+                case 4: deleteTrip(trips, n); break;
+                case 5: editTrip(trips, n); break;
+                case 6: rateTrip(trips, *n); break;
+                case 7: break;
+                default: printf("\nINVALID\n");
+                }
+        } while (choice!=7);
 }
