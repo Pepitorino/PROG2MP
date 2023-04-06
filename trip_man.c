@@ -47,10 +47,32 @@ viewIte(travelPlan* trips,
 }
 
 void
-addTrip(travelPlan* trips, 
-        int *n)
+addTrip(destination* destinations,
+        travelPlan* trips, 
+        int *n,
+        int *dn)
 {
-        printf("Enter Shortname (10 max length): ");
+        int i=0;
+        str_t temp;
+        travelPlan* start=trips;
+
+        for(i=0;i<*n;i++)
+        {
+                trips=trips->next;
+        }
+
+        trips->next=calloc(1, sizeof(travelPlan));
+        trips=trips->next;
+
+        do
+        {
+                if (i>0) printf("\nINVALID\n\n");
+                printf("Enter Shortname from list of Destinations (10 max length): ");
+                scanf(" %10[^\n]%*[^\n]", temp);
+                i++;
+        } while (!shortNameValidationDestination(destinations, temp, dn));
+        strcpy(trips->shortName, temp);
+
         printf("Enter Startdate (dd/mm/yyyy): ");
         printf("Enter rating (0.0-5.0): ");
         printf("Enter comments (100 max length): ");
@@ -58,6 +80,9 @@ addTrip(travelPlan* trips,
         printf("Morning activity for day N");
         printf("Afternoon activity for day N");
         printf("Evening activity for day N");
+
+        trips=start;
+
         *n+=1;
 }
 
@@ -149,7 +174,7 @@ editTrip(travelPlan* trips,
                                 switch(choice)
                                 {
                                         case 1:
-                                                printf("\nOLD COMMENTAku: %s", trips->comments);
+                                                printf("\nOLD COMMENT: %s", trips->comments);
                                                 printf("\nEnter new comment (100 max length): "); 
                                                 scanf(" %100[^\n]%*[^\n]", trips->comments);
                                         case 2: editIte(trips);

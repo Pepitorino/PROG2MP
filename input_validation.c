@@ -12,10 +12,11 @@ inputRating()
 
 }
 
-void
-inputText(char* text, int length)
+int
+InputValidation(str_t text, int n)
 {
-
+    if (strlen(text)>n) return 1;
+    return 0;
 }
 
 int shortNameValidationDestination(destination* data, 

@@ -49,7 +49,7 @@ destInit (destination* data)
 
     for (i=0;!feof(f1);i++)
     {
-        fscanf(f1, " %10[^\n] %50[^\n]", data[i].shortName, data[i].longName);
+        fscanf(f1, " %10s %50[^\n]", data[i].shortName, data[i].longName);
         fscanf(f1, " %30[^\n]", data[i].country);
         fscanf(f1, " %30[^\n]", data[i].geoGroup);
         fscanf(f1, " %100[^\n]", data[i].toDo);

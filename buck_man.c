@@ -18,16 +18,17 @@ addGoal(destination* destinations, goal* bucketlist, int *n, int *dn)
 {
     char choice;
     int i=0;
+    str_t temp;
 
     do
     {
-        if (i<0) printf("\nINVALID\n");
+        if (i>0) printf("\nINVALID\n\n");
         printf("Enter Shortname from list of Destinations (10 max length): ");
-        scanf(" %10[^\n]", bucketlist[*n].shortName);
+        scanf(" %10[^\n]%*[^\n]", temp);
         i++;
-    } while (!shortNameValidationDestination(destinations, bucketlist[*n].shortName, dn));
+    } while (!shortNameValidationDestination(destinations, temp, dn));
+    strcpy(bucketlist[i].shortName, temp);
     
-
     do
     {
         printf("Enter Priority Ranking(1-10): ");
@@ -36,8 +37,11 @@ addGoal(destination* destinations, goal* bucketlist, int *n, int *dn)
         if (bucketlist[*n].prioRank>10||bucketlist[*n].prioRank<1) printf("\nINVALID\n");
     } while (bucketlist[*n].prioRank>10||bucketlist[*n].prioRank<1);
 
-    printf("Enter Remarks (30 max length): ");
-    scanf(" %30[^\n]%*[^\n]", bucketlist[*n].remarks);
+    do 
+    {
+        printf("Enter Remarks (30 max length): ");
+        scanf(" %[^\n]", bucketlist[*n].remarks);
+    } while(InputValidation(bucketlist[*n].remarks, 30));
 
     do
     {
