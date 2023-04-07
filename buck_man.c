@@ -178,7 +178,10 @@ buckMenu(destination* destinations, goal* bucketlist, int *n, int* dn)
         fflush(stdin);
         switch(choice)
         {
-            case 1: displayBucketlist(bucketlist, *n); break;
+            case 1: 
+                if(*n<10) displayBucketlist(bucketlist, *n); 
+                else printf("MAX NUMBER OF GOALS REACHED");
+                break;
             case 2: addGoal(destinations, bucketlist, n, dn); break;
             case 3: deleteGoal(bucketlist, n); break;
             case 4: editGoal(bucketlist, n); break;
