@@ -49,7 +49,7 @@ main()
     int destnum, bucketlistnum, tripnum;
     destination destinations[101];
     goal bucketlist[11];
-    travelPlan* trips=calloc(1, sizeof(travelPlan));
+    travelPlan trips[101];
 
     printf("%33s", "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     printf("\nYET ANOTHER TRAVEL APPLICATION (YATA)\n");
@@ -60,10 +60,11 @@ main()
         trips, 
         &destnum, &bucketlistnum, &tripnum);
     // mainMenu(destinations, bucketlist, trips, destnum, bucketlistnum, tripnum);
-    longDisplay(destinations, destnum);
+    // longDisplay(destinations, destnum);
     // buckMenu(destinations, bucketlist, &bucketlistnum, &destnum);
     // destMenu(destinations, &destnum);
     tripMenu(destinations, trips, &tripnum, &destnum);
     // destMenu(destinations, &destnum);
+    // saveDest(destinations, destnum);
     return 0;
 }

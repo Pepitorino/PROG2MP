@@ -16,8 +16,8 @@ checkFiles ()
         fclose(destination);
         destination=fopen("destination.txt", "w");
         fprintf(destination, "\n");
-        fclose(destination);
     }
+    fclose(destination);
     
     bucketlist=fopen("bucketlist.txt", "r");
     if(bucketlist==NULL)
@@ -25,8 +25,8 @@ checkFiles ()
         fclose(bucketlist);
         bucketlist=fopen("bucketlist.txt", "w");
         fprintf(bucketlist, "\n");
-        fclose(bucketlist);
     }
+    fclose(bucketlist);
 
     trips=fopen("trips.txt", "r");
     if (trips==NULL)
@@ -34,8 +34,8 @@ checkFiles ()
         fclose(trips);
         trips=fopen("trips.txt", "w");
         fprintf(trips, "\n");
-        fclose(trips);
     }
+    fclose(trips);
 }
 
 int
@@ -86,14 +86,60 @@ buckInit (goal* data)
 int 
 tripInit (travelPlan* trips)
 {
+    int i=0;    
+    int num=-1;
 
+    FILE* f1;
+    f1 = fopen("trips.txt", "r");
+
+    for (i=0;!feof(f1);i++)
+    {
+        fscanf(f1, " %[^\n]", trips[i].shortName);
+        num++;
+    }
+
+    return num;
 }
 
 void
 iteInit (travelPlan* trips, 
         int n)
 {
+    int i=0, j=0;
+    FILE* f1;
+    str_t temp;
+    str_t tempday;
 
+    for(i=0;i<n;i++)
+    {
+        strcpy(temp, trips[i].shortName);
+        strcat(temp, "-itinerary.txt");
+        f1=fopen(temp, "r");
+
+        trips[i].itinerary=calloc(1, sizeof(itinerary));
+        trips[i].start=trips[i].itinerary;
+
+        fscanf(f1, " %s", trips[i].startDate);
+        fscanf(f1, " %f", &trips[i].rating);
+        fscanf(f1, " %[^\n]", trips[i].comments);
+        for (j=0;!feof(f1);j++)
+        {
+            fscanf(f1, " %s", tempday);
+            trips[i].itinerary->day=atoi(tempday);
+            fscanf(f1, " %*[^\n]");
+            fscanf(f1, " %30[^\n]", trips[i].itinerary->morning);
+            fscanf(f1, " %*[^\n]");
+            fscanf(f1, " %30[^\n]", trips[i].itinerary->afternoon);
+            fscanf(f1, " %*[^\n]");
+            fscanf(f1, " %30[^\n]", trips[i].itinerary->evening);
+            fscanf(f1, " %*[^\n]");
+            trips[i].itinerary->next=calloc(1,sizeof(itinerary));
+            trips[i].itinerary=trips[i].itinerary->next;
+        }
+        trips[i].itinerary=trips[i].start;
+        trips[i].days=j;
+        fclose(f1);
+    }
 }
 
 

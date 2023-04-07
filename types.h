@@ -49,8 +49,8 @@ typedef struct TravelPlan
     float rating;
     longDesc comments;
     int days;
-    itinerary itinerary;
-    struct TravelPlan* next;
+    itinerary* start;
+    itinerary* itinerary;
 } travelPlan;
 
 #endif  

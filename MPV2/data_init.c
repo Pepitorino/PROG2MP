@@ -1,8 +1,3 @@
-#include "types.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 void 
 checkFiles ()
 {
@@ -76,6 +71,7 @@ buckInit (goal* data)
         fscanf(f1, " %d", &data[i].prioRank);
         fscanf(f1, " %[^\n]", data[i].remarks);
         fscanf(f1, " %d", &data[i].flag);
+        fscanf(f1,"%*s");
         num++;
     }
 
