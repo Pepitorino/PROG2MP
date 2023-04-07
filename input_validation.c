@@ -97,11 +97,16 @@ int shortNameValidationGoal(goal* data,
     return 0;
 }
 
-int shortNameValidationTrip(travelPlan* trips,
+int shortNameValidationTrip(travelPlan* data,
                             str_t temp,
                             int *n)
 {
-
+    int i=0;
+    for (i=0;i<*n;i++)
+    {
+        if (!strcmp(data[i].shortName, temp)) return 1;
+    }
+    return 0;
 }
 
 int checkYesOrNo(char c)
