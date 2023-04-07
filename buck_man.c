@@ -23,11 +23,12 @@ addGoal(destination* destinations, goal* bucketlist, int *n, int *dn)
     do
     {
         if(i>0) printf("\nINVALID (TYPE \"EXIT\" TO EXIT) \n");
+        if (shortNameValidationGoal(bucketlist, temp, n)) printf("GOAL ALREADY EXISTS\n");
         printf("Enter Shortname from list of Destinations (10 max length): ");
         scanf(" %10[^\n]%*[^\n]", temp);
         i++;
         if (!strcmp(temp, "EXIT")) return;
-    } while (!shortNameValidationDestination(destinations, temp, dn));
+    } while (!shortNameValidationDestination(destinations, temp, dn)||shortNameValidationGoal(bucketlist, temp, n));
     strcpy(bucketlist[*n].shortName, temp);
     
     do

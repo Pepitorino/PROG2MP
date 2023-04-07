@@ -35,11 +35,12 @@ addDestination(destination* dest,
     do
     {
         if(i>0) printf("\nINVALID (TYPE \"EXIT\" TO EXIT) \n");
+        if (shortNameValidationDestination(dest, dest[*n].shortName,n)) printf("DESTINATION ALREADY EXISTS\n");
         printf("Enter Shortname (10 max length and must be UNIQUE): ");
         scanf(" %[^\n]", dest[*n].shortName);
         i++;
         if (!strcmp(dest[*n].shortName, "EXIT")) return;
-    } while (inputValidation(dest[*n].shortName, 10)&&!shortNameValidationDestination(dest, dest[*n].shortName, n));
+    } while (inputValidation(dest[*n].shortName, 10)||shortNameValidationDestination(dest, dest[*n].shortName, n));
 
     i=0;
     do
@@ -218,11 +219,11 @@ destMenu(destination* dest,
                 else printf("\nMAX DESTINATIONS REACHED\n");
                 break;
             case 4: 
-                if (*n<=0) deleteDestination(dest, n); 
+                if (*n>0) deleteDestination(dest, n); 
                 else printf("\nNO DESTINATIONS TO DELETE\n");
                 break;
             case 5: 
-                if (*n<=0) editDestination(dest, n);
+                if (*n>0) editDestination(dest, n);
                 else printf("\nNO DESTINATIONS TO EDIT\n");
                 break;
             case 6: break;

@@ -139,6 +139,7 @@ deleteTrip(travelPlan* trips,
 {
         str_t temp;
         str_t tempdate;
+        str_t tempfn;
         int i=0;
 
         do
@@ -166,6 +167,9 @@ deleteTrip(travelPlan* trips,
         {
                 if (!strcmp(trips[i].shortName, temp)&&!strcmp(trips[i].startDate, tempdate))
                 {
+                        strcpy(tempfn, trips[i].shortName);
+                        strcat(tempfn, "-itinerary.txt");
+                        remove(tempfn);
                         for(i=i;i<*n;i++) trips[i]=trips[i+1];
                         *n-=1;
                 }
@@ -250,7 +254,7 @@ editDay(int day,
                 printf("\n2. AFTERNOON");
                 printf("\n3. EVENING");
                 printf("\n4. EXIT");
-                printf("\nWHERE WOULD YOU LIKE TO GO: ");
+                printf("\nWhat would you like to do: ");
                 scanf(" %d", &choice);
                 fflush(stdin);
                 switch (choice)
@@ -294,7 +298,7 @@ editIte(travelPlan* trips,
                 printf("\n2. DELETE A DAY");
                 printf("\n3. EDIT A DAY");
                 printf("\n4. BACK TO EDIT TRIP");
-                printf("\nWHERE WOULD YOU LIKE TO GO: ");
+                printf("\nWhat would you like to do: ");
                 scanf(" %d", &choice);
                 fflush(stdin);
                 switch (choice)
@@ -362,7 +366,7 @@ editTrip(travelPlan* trips,
                                 printf("\n1. COMMENTS");
                                 printf("\n2. ITINERARY CONTENTS");
                                 printf("\n3. EXIT");
-                                printf("\nWHERE WOULD YOU LIKE TO GO: ");
+                                printf("\nWhat would you like to do: ");
                                 scanf(" %d", &choice);
                                 fflush(stdin);
                                 switch(choice)

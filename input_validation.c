@@ -63,7 +63,7 @@ inputDate(str_t text)
 int
 inputRatingValidation(float f)
 {
-    if (f<5&&f>0)
+    if (f<=5&&f>=0)
         if (!(((int)(f*10))%5)) return 1;
     return 0;
 }

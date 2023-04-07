@@ -25,9 +25,9 @@ void
 mainMenu(destination* dest, 
         goal* bucketlist, 
         travelPlan* trips, 
-        int destnum, 
-        int bucketlistnum, 
-        int tripnum)
+        int *destnum, 
+        int *bucketlistnum, 
+        int *tripnum)
 {
     int choice;
     do
@@ -38,6 +38,17 @@ mainMenu(destination* dest,
         scanf("%d", &choice);
         if (choice<1||choice>5) printf("\nINVALID CHOICE\n");
         } while (choice<1||choice>5);
+        switch (choice)
+        {
+        case 1:
+            /* code */
+            break;
+        case 2: destMenu(dest, destnum); break;
+        case 3: buckMenu(dest, bucketlist, bucketlistnum, destnum); break;
+        case 4: tripMenu(dest, trips, tripnum, destnum); break;
+        case 5: break;
+        default: printf("\nINVALID\n");
+        }
 
     } while (choice!=5);
     
@@ -59,12 +70,10 @@ main()
         bucketlist, 
         trips, 
         &destnum, &bucketlistnum, &tripnum);
-    // mainMenu(destinations, bucketlist, trips, destnum, bucketlistnum, tripnum);
-    // longDisplay(destinations, destnum);
-    // buckMenu(destinations, bucketlist, &bucketlistnum, &destnum);
-    // destMenu(destinations, &destnum);
-    tripMenu(destinations, trips, &tripnum, &destnum);
-    // destMenu(destinations, &destnum);
-    // saveDest(destinations, destnum);
+    mainMenu(destinations, bucketlist, trips, &destnum, &bucketlistnum, &tripnum);
+    save(destinations, 
+        bucketlist, 
+        trips, 
+        &destnum, &bucketlistnum, &tripnum);
     return 0;
 }

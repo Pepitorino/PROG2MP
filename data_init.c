@@ -122,17 +122,16 @@ iteInit (travelPlan* trips,
         fscanf(f1, " %s", trips[i].startDate);
         fscanf(f1, " %f", &trips[i].rating);
         fscanf(f1, " %[^\n]", trips[i].comments);
-        for (j=0;!feof(f1);j++)
+        for (j=-1;!feof(f1);j++)
         {
             fscanf(f1, " %s", tempday);
-            trips[i].itinerary->day=atoi(tempday);
+            trips[i].itinerary->day=atoi(&tempday[3]);
             fscanf(f1, " %*[^\n]");
             fscanf(f1, " %30[^\n]", trips[i].itinerary->morning);
             fscanf(f1, " %*[^\n]");
             fscanf(f1, " %30[^\n]", trips[i].itinerary->afternoon);
             fscanf(f1, " %*[^\n]");
             fscanf(f1, " %30[^\n]", trips[i].itinerary->evening);
-            fscanf(f1, " %*[^\n]");
             trips[i].itinerary->next=calloc(1,sizeof(itinerary));
             trips[i].itinerary=trips[i].itinerary->next;
         }
