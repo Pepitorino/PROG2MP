@@ -144,37 +144,37 @@ editDestination(destination* dest,
                         do
                         {
                             printf("\nOLD LONGNAME: %s", dest[i].longName);
-                            printf("Enter new longname (50 max length): ");
-                            scanf(" %[^\n]", dest[*n].longName);
-                            if(InputValidation(dest[*n].longName, 50)) printf("\nINVALID\n");
-                        } while (InputValidation(dest[*n].longName, 50));
+                            printf("\nEnter new longname (50 max length): ");
+                            scanf(" %[^\n]", dest[i].longName);
+                            if(InputValidation(dest[i].longName, 50)) printf("\nINVALID\n");
+                        } while (InputValidation(dest[i].longName, 50));
                         break;
                     case 2:
                         do
                         {
                             printf("\nOLD COUNTRY: %s", dest[i].country);
-                            printf("Enter new country (20 max length): ");
-                            scanf("%[^\n]", dest[*n].country);
-                            if(InputValidation(dest[*n].country, 20)) printf("\nINVALID\n");
-                        } while (InputValidation(dest[*n].country, 20));
+                            printf("\nEnter new country (20 max length): ");
+                            scanf("%[^\n]", dest[i].country);
+                            if(InputValidation(dest[i].country, 20)) printf("\nINVALID\n");
+                        } while (InputValidation(dest[i].country, 20));
                         break;
                     case 3:
                         do
                         {
                             printf("\nOLD GEOGRAPHIC GROUP: %s", dest[i].geoGroup);
-                            printf("Enter new geographic group (20 max length): ");
-                            scanf(" %[^\n]", dest[*n].geoGroup);
-                            if(InputValidation(dest[*n].geoGroup, 20)) printf("\nINVALID\n");
-                        } while (InputValidation(dest[*n].geoGroup, 20));
+                            printf("\nEnter new geographic group (20 max length): ");
+                            scanf(" %[^\n]", dest[i].geoGroup);
+                            if(InputValidation(dest[i].geoGroup, 20)) printf("\nINVALID\n");
+                        } while (InputValidation(dest[i].geoGroup, 20));
                         break;
                     case 4:
                         do
                         {
                             printf("\nOLD ACTIVTIES TO DO: %s", dest[i].toDo);
-                            printf("Enter activities to do (100 max length): ");
-                            scanf(" %[^\n]", dest[*n].toDo);
-                            if(InputValidation(dest[*n].toDo, 100)) printf("\nINVALID\n");
-                        } while (InputValidation(dest[*n].toDo, 100));
+                            printf("\nEnter activities to do (100 max length): ");
+                            scanf(" %[^\n]", dest[i].toDo);
+                            if(InputValidation(dest[i].toDo, 100)) printf("\nINVALID\n");
+                        } while (InputValidation(dest[i].toDo, 100));
                     case 5: break;                    
                     default: printf("\nINVALID\n");
                 }
