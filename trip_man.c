@@ -31,9 +31,17 @@ viewIte(travelPlan* trips,
         {
                 if (!strcmp(trips[i].shortName, temp))
                 {
+                        printf("\nShort Name: %s", trips[i].shortName);
+                        printf("\nStart Date: %s", trips[i].startDate);
+                        if (trips[i].rating>=0) printf("\nRating: %.1f", trips[i].rating);
+                        else printf("\nRating: No Rating Available", trips[i].rating);                        
+                        printf("\nComments: %s", trips[i].comments);
                         for(j=0; j<trips[i].days; j++)
                         {
+                                printf("\nDay %d Itinerary", trips[i].itinerary->day);
                                 printf(" \n%s", trips[i].itinerary->morning);
+                                printf(" \n%s", trips[i].itinerary->afternoon);
+                                printf(" \n%s", trips[i].itinerary->evening);                                
                                 trips[i].itinerary=trips[i].itinerary->next;
                         }
                         trips[i].itinerary=trips[i].start;
@@ -60,17 +68,17 @@ addTrip(destination* destinations,
                 scanf(" %10[^\n]%*[^\n]", trips[*n].shortName);
                 i++;
                 if (!strcmp(trips[*n].shortName, "EXIT")) return;
-        } while (!shortNameValidationDestination(destinations, trips[*n].shortName, dn));
+        } while (!shortNameValidationDestination(destinations, trips[*n].shortName, dn)||shortNameValidationTrip(trips, trips[*n].shortName, n));
 
         i=0;
         do
         {
                 if(i>0) printf("\nINVALID (TYPE \"EXIT\" TO EXIT) \n");
-                printf("Enter Startdate (mm/dd/yyyy): ");
-                scanf(" %[^\n]", trips[*n].startDate);
+                printf("Enter Startdate in mm/dd/yyyy (must be UNIQUE): ");
+                scanf(" %s%*[^\n]", trips[*n].startDate);
                 i++;
                 if (!strcmp(trips[*n].startDate, "EXIT")) return;
-        } while (inputDate(trips[*n].startDate));
+        } while (inputDate(trips[*n].startDate)||startDateValidationTrip(trips, trips[*n].startDate, n));
 
         trips[*n].rating=-1;
 
@@ -78,7 +86,7 @@ addTrip(destination* destinations,
         do 
         {
                 if(i>0) printf("\nINVALID (TYPE \"EXIT\" TO EXIT)\n");
-               printf("\nEnter comments (100 max length): ");
+               printf("Enter comments (100 max length): ");
                scanf(" %[^\n]", trips[*n].comments);
                if (!strcmp(trips[*n].startDate, "EXIT")) return;
         } while(inputValidation(trips[*n].comments, 100));
@@ -191,7 +199,7 @@ void
 editDay(int day, travelPlan* trips, int n)
 {
         int i=0;
-        int choice;
+        int choice=0;
         for (i=1;i<day;i++)
         {
                 trips[n].itinerary=trips[n].itinerary->next;
@@ -199,38 +207,31 @@ editDay(int day, travelPlan* trips, int n)
 
         do
         {
-                printf("\nCHOOSE ACTIVITY TO EDIT");
+                printf("\nCHOOSE ACTIVITY TO EDIT FOR DAY %d", trips[n].itinerary->day);
+                printf("\nOLD ACTIVITIES\n:%s\n:%s\n:%s", trips[n].itinerary->morning,trips[n].itinerary->afternoon,trips[n].itinerary->evening);
                 printf("\n1. MORNING");
                 printf("\n2. AFTERNOON");
                 printf("\n3. EVENING");
                 printf("\n4. EXIT");
+                printf("\nWHERE WOULD YOU LIKE TO GO: ");
                 scanf(" %d", &choice);
                 fflush(stdin);
                 switch (choice)
                 {
                         case 1:
-                                do
-                                {
-                                        printf("\nOLD MORNING ACTIVITY: %s", trips[i].itinerary->morning);
-                                        printf("\nENTER NEW ACTIVITY (30 max length):");
-                                        scanf(" %[^\n]", trips[i].itinerary->morning);
-                                } while (inputValidation(trips[i].itinerary->morning, 30));
+                                printf("\nOLD MORNING ACTIVITY: %s", trips[n].itinerary->morning);
+                                printf("\nENTER NEW ACTIVITY (30 max length): ");
+                                scanf(" %30[^\n]%*[^\n]", trips[n].itinerary->morning);
                                 break;
                         case 2:
-                                do
-                                {
-                                        printf("\nOLD AFTERNOON ACTIVITY: %s", trips[i].itinerary->morning);
-                                        printf("\nENTER NEW ACTIVITY (30 max length):");
-                                        scanf(" %[^\n]", trips[i].itinerary->afternoon);
-                                } while (inputValidation(trips[i].itinerary->afternoon, 30));
+                                printf("\nOLD AFTERNOON ACTIVITY: %s", trips[n].itinerary->afternoon);
+                                printf("\nENTER NEW ACTIVITY (30 max length): ");
+                                scanf(" %30[^\n]%*[^\n]", trips[n].itinerary->afternoon);
                                 break;
                         case 3:
-                                do
-                                {
-                                        printf("\nOLD EVENING ACTIVITY: %s", trips[i].itinerary->morning);
-                                        printf("\nENTER NEW ACTIVITY (30 max length):");
-                                        scanf(" %[^\n]", trips[i].itinerary->evening);
-                                } while (inputValidation(trips[i].itinerary->evening, 30));
+                                printf("\nOLD EVENING ACTIVITY: %s", trips[n].itinerary->evening);
+                                printf("\nENTER NEW ACTIVITY (30 max length): ");
+                                scanf(" %30[^\n]%*[^\n]", trips[n].itinerary->evening);
                                 break;
                         case 4:
                                 break;
@@ -255,7 +256,7 @@ editIte(travelPlan* trips, int n)
                 printf("\n2. DELETE A DAY");
                 printf("\n3. EDIT A DAY");
                 printf("\n4. BACK TO EDIT TRIP");
-                printf("\nWHERE WOULD YOU LIKE TO GO? ");
+                printf("\nWHERE WOULD YOU LIKE TO GO: ");
                 scanf(" %d", &choice);
                 fflush(stdin);
                 switch (choice)
@@ -349,7 +350,6 @@ rateTrip(travelPlan* trips,
         int *n)
 {
         str_t temp;
-        str_t tempdate;
         int i=0;
 
         do
@@ -358,24 +358,13 @@ rateTrip(travelPlan* trips,
                 printf("\nEnter shortname of trip you would like to rate");
                 printf("\nSHORTNAME (CASE SENSITIVE): ");
                 scanf(" %s", temp);
-                i++;
                 if(!strcmp(temp, "EXIT")) return;
+                i++;
         } while(!shortNameValidationTrip(trips, temp, n));
-
-        i=0;
-        do
-        {
-                if(i>0) printf("\nINVALID (TYPE \"EXIT\" TO EXIT)\n");
-                printf("\nEnter start date of %s trip you would like to rate", temp);
-                printf("\nSTARTDATE (dd/mm/yyyy): ");
-                scanf(" %s", tempdate);
-                i++;
-                if(!strcmp(temp, "EXIT")) return;
-        } while(!startDateValidationTrip(trips, tempdate, n));
 
         for (i=0;i<*n;i++)
         {
-                if (!strcmp(trips[i].shortName, temp)&&!strcmp(trips[i].startDate, tempdate))
+                if (!strcmp(trips[i].shortName, temp))
                 {
                         do
                         {
