@@ -27,7 +27,7 @@ addGoal(destination* destinations, goal* bucketlist, int *n, int *dn)
         scanf(" %10[^\n]%*[^\n]", temp);
         i++;
     } while (!shortNameValidationDestination(destinations, temp, dn));
-    strcpy(bucketlist[i].shortName, temp);
+    strcpy(bucketlist[*n].shortName, temp);
     
     do
     {
