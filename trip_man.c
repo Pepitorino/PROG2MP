@@ -34,7 +34,7 @@ viewIte(travelPlan* trips,
                         printf("\nShort Name: %s", trips[i].shortName);
                         printf("\nStart Date: %s", trips[i].startDate);
                         if (trips[i].rating>=0) printf("\nRating: %.1f", trips[i].rating);
-                        else printf("\nRating: No Rating Available", trips[i].rating);                        
+                        else printf("\nRating: No Rating Available");                        
                         printf("\nComments: %s", trips[i].comments);
                         for(j=0; j<trips[i].days; j++)
                         {
@@ -173,7 +173,42 @@ deleteTrip(travelPlan* trips,
 }
 
 void
-deleteDay(int day, travelPlan* trips, int n)
+addDay(travelPlan* trips, 
+        int n)
+{
+        int i;
+        for (i=1;i<trips[n].days;i++)
+        {
+                trips[n].itinerary=trips[n].itinerary->next;
+        }
+
+        i=trips[n].itinerary->day;
+
+        trips[n].itinerary->next=calloc(1, sizeof(itinerary));
+        trips[n].itinerary=trips[n].itinerary->next;
+
+        trips[n].itinerary->day=i+1;
+
+        printf("\nNew Day %d", trips[n].itinerary->day);
+
+        printf("\nEnter activity for Morning: ");
+        scanf(" %30[^\n]%*[^\n]", trips[n].itinerary->morning);
+
+        printf("Enter activity for Afternoon: ");
+        scanf(" %30[^\n]%*[^\n]", trips[n].itinerary->afternoon);
+
+        printf("Enter activity for Evening: ");
+        scanf(" %30[^\n]%*[^\n]", trips[n].itinerary->evening);
+
+
+        trips[n].itinerary=trips[n].start;
+        trips[n].days+=1;
+}
+
+void
+deleteDay(int day, 
+        travelPlan* trips, 
+        int n)
 {
         int i=0;
         itinerary* temp;
@@ -196,7 +231,9 @@ deleteDay(int day, travelPlan* trips, int n)
 }
 
 void
-editDay(int day, travelPlan* trips, int n)
+editDay(int day, 
+        travelPlan* trips, 
+        int n)
 {
         int i=0;
         int choice=0;
@@ -244,7 +281,8 @@ editDay(int day, travelPlan* trips, int n)
 }
 
 void
-editIte(travelPlan* trips, int n)
+editIte(travelPlan* trips, 
+        int n)
 {
         int choice=0;
         int choiceday;
@@ -262,7 +300,8 @@ editIte(travelPlan* trips, int n)
                 switch (choice)
                 {
                         case 1:
-
+                                addDay(trips, n);
+                                break;
                         case 2:
                                 if(trips[n].days==1) 
                                 {
@@ -380,8 +419,10 @@ rateTrip(travelPlan* trips,
 }
 
 void
-tripMenu(destination* destinations, travelPlan* trips, 
-        int *n, int *dn)
+tripMenu(destination* destinations, 
+        travelPlan* trips, 
+        int *n, 
+        int *dn)
 {
         int choice;
         do
