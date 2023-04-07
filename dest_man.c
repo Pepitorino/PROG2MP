@@ -34,47 +34,52 @@ addDestination(destination* dest,
     int i=0;
     do
     {
-        if(i>0) printf("\nINVALID\n");
+        if(i>0) printf("\nINVALID (TYPE \"EXIT\" TO EXIT) \n");
         printf("Enter Shortname (10 max length and must be UNIQUE): ");
         scanf(" %[^\n]", dest[*n].shortName);
         i++;
-    } while (InputValidation(dest[*n].shortName, 10)&&!shortNameValidationDestination(dest, dest[*n].shortName, n));
+        if (!strcmp(dest[*n].shortName, "EXIT")) return;
+    } while (inputValidation(dest[*n].shortName, 10)&&!shortNameValidationDestination(dest, dest[*n].shortName, n));
 
     i=0;
     do
     {
-        if(i>0) printf("\nINVALID\n");
+        if(i>0) printf("\nINVALID (TYPE \"EXIT\" TO EXIT) \n");
         printf("Enter Longname (50 max length): ");
         scanf(" %[^\n]", dest[*n].longName);
         i++;
-    } while (InputValidation(dest[*n].longName, 50));
+        if (!strcmp(dest[*n].longName, "EXIT")) return;
+    } while (inputValidation(dest[*n].longName, 50));
     
     i=0;
     do
     {
-        if (i>0) printf("\nINVALID\n");
+        if(i>0) printf("\nINVALID (TYPE \"EXIT\" TO EXIT) \n");
         printf("Enter Country (20 max length): ");
         scanf(" %[^\n]", dest[*n].country);
         i++;
-    } while (InputValidation(dest[*n].country, 20));
+        if (!strcmp(dest[*n].country, "EXIT")) return;
+    } while (inputValidation(dest[*n].country, 20));
     
     i=0;
     do
     {
-        if (i>0) printf("\nINVALID\n");
+        if(i>0) printf("\nINVALID (TYPE \"EXIT\" TO EXIT) \n");
         printf("Enter Geographic Group (20 max length): ");
         scanf(" %[^\n]", dest[*n].geoGroup);
         i++;
-    } while (InputValidation(dest[*n].geoGroup, 20));
+        if (!strcmp(dest[*n].geoGroup, "EXIT")) return;
+    } while (inputValidation(dest[*n].geoGroup, 20));
 
     i=0;
     do
     {
-        if (i>0) printf("\nINVALID\n");
+        if(i>0) printf("\nINVALID (TYPE \"EXIT\" TO EXIT) \n");
         printf("Enter Activities to Do (100 max length): ");
         scanf(" %[^\n]", dest[*n].toDo);
         i++;
-    } while (InputValidation(dest[*n].toDo, 100));
+        if (!strcmp(dest[*n].toDo, "EXIT")) return;
+    } while (inputValidation(dest[*n].toDo, 100));
 
     *n+=1;
 }
@@ -89,10 +94,11 @@ deleteDestination(destination* dest,
     printf("\nEnter shortname of destination you would like to delete");
     do
     {
-        if(i>0) printf("\nINVALID\n");
+        if(i>0) printf("\nINVALID (TYPE \"EXIT\" TO EXIT) \n");
         printf("\nSHORTNAME (CASE SENSITIVE): ");
         scanf(" %s", temp);
         i++;
+        if (!strcmp(temp, "EXIT")) return;
     } while(!shortNameValidationDestination(dest, temp, n));
 
     for (i=0;i<*n;i++)
@@ -117,10 +123,11 @@ editDestination(destination* dest,
     printf("\nEnter shortname of destination you would like to edit");
     do
     {
-        if(i>0) printf("INVALID\n");
+        if(i>0) printf("\nINVALID (TYPE \"EXIT\" TO EXIT) \n");
         printf("\nSHORTNAME (CASE SENSITIVE): ");
         scanf(" %s", temp);
         i++;
+        if (!strcmp(temp, "EXIT")) return;
     } while(!shortNameValidationDestination(dest, temp, n));
 
      for (i=0;i<*n;i++)
@@ -146,8 +153,8 @@ editDestination(destination* dest,
                             printf("\nOLD LONGNAME: %s", dest[i].longName);
                             printf("\nEnter new longname (50 max length): ");
                             scanf(" %[^\n]", dest[i].longName);
-                            if(InputValidation(dest[i].longName, 50)) printf("\nINVALID\n");
-                        } while (InputValidation(dest[i].longName, 50));
+                            if(inputValidation(dest[i].longName, 50)) printf("\nINVALID\n");
+                        } while (inputValidation(dest[i].longName, 50));
                         break;
                     case 2:
                         do
@@ -155,8 +162,8 @@ editDestination(destination* dest,
                             printf("\nOLD COUNTRY: %s", dest[i].country);
                             printf("\nEnter new country (20 max length): ");
                             scanf("%[^\n]", dest[i].country);
-                            if(InputValidation(dest[i].country, 20)) printf("\nINVALID\n");
-                        } while (InputValidation(dest[i].country, 20));
+                            if(inputValidation(dest[i].country, 20)) printf("\nINVALID\n");
+                        } while (inputValidation(dest[i].country, 20));
                         break;
                     case 3:
                         do
@@ -164,8 +171,8 @@ editDestination(destination* dest,
                             printf("\nOLD GEOGRAPHIC GROUP: %s", dest[i].geoGroup);
                             printf("\nEnter new geographic group (20 max length): ");
                             scanf(" %[^\n]", dest[i].geoGroup);
-                            if(InputValidation(dest[i].geoGroup, 20)) printf("\nINVALID\n");
-                        } while (InputValidation(dest[i].geoGroup, 20));
+                            if(inputValidation(dest[i].geoGroup, 20)) printf("\nINVALID\n");
+                        } while (inputValidation(dest[i].geoGroup, 20));
                         break;
                     case 4:
                         do
@@ -173,8 +180,8 @@ editDestination(destination* dest,
                             printf("\nOLD ACTIVTIES TO DO: %s", dest[i].toDo);
                             printf("\nEnter activities to do (100 max length): ");
                             scanf(" %[^\n]", dest[i].toDo);
-                            if(InputValidation(dest[i].toDo, 100)) printf("\nINVALID\n");
-                        } while (InputValidation(dest[i].toDo, 100));
+                            if(inputValidation(dest[i].toDo, 100)) printf("\nINVALID\n");
+                        } while (inputValidation(dest[i].toDo, 100));
                     case 5: break;                    
                     default: printf("\nINVALID\n");
                 }
@@ -210,8 +217,14 @@ destMenu(destination* dest,
                 if (*n<100) addDestination(dest, n); 
                 else printf("\nMAX DESTINATIONS REACHED\n");
                 break;
-            case 4: deleteDestination(dest, n); break;
-            case 5: editDestination(dest, n); break;
+            case 4: 
+                if (*n<=0) deleteDestination(dest, n); 
+                else printf("\nNO DESTINATIONS TO DELETE\n");
+                break;
+            case 5: 
+                if (*n<=0) editDestination(dest, n);
+                else printf("\nNO DESTINATIONS TO EDIT\n");
+                break;
             case 6: break;
             default: printf("\nINVALID\n");
         }

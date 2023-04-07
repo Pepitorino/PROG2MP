@@ -60,14 +60,16 @@ inputDate(str_t text)
     return validateDate(m,d,y);
 }
 
-void 
-inputRating()
+int
+inputRatingValidation(float f)
 {
-
+    if (f<5&&f>0)
+        if (!(((int)(f*10))%5)) return 1;
+    return 0;
 }
 
 int
-InputValidation(str_t text, int n)
+inputValidation(str_t text, int n)
 {
     if (strlen(text)>n) return 1;
     return 0;
@@ -105,6 +107,18 @@ int shortNameValidationTrip(travelPlan* data,
     for (i=0;i<*n;i++)
     {
         if (!strcmp(data[i].shortName, temp)) return 1;
+    }
+    return 0;
+}
+
+int startDateValidationTrip(travelPlan* data,
+                            str_t temp,
+                            int *n)
+{
+    int i=0;
+    for (i=0;i<*n;i++)
+    {
+        if (!strcmp(data[i].startDate, temp)) return 1;
     }
     return 0;
 }

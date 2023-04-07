@@ -22,10 +22,11 @@ addGoal(destination* destinations, goal* bucketlist, int *n, int *dn)
 
     do
     {
-        if (i>0) printf("\nINVALID\n\n");
+        if(i>0) printf("\nINVALID (TYPE \"EXIT\" TO EXIT) \n");
         printf("Enter Shortname from list of Destinations (10 max length): ");
         scanf(" %10[^\n]%*[^\n]", temp);
         i++;
+        if (!strcmp(temp, "EXIT")) return;
     } while (!shortNameValidationDestination(destinations, temp, dn));
     strcpy(bucketlist[*n].shortName, temp);
     
@@ -37,11 +38,14 @@ addGoal(destination* destinations, goal* bucketlist, int *n, int *dn)
         if (bucketlist[*n].prioRank>10||bucketlist[*n].prioRank<1) printf("\nINVALID\n");
     } while (bucketlist[*n].prioRank>10||bucketlist[*n].prioRank<1);
 
+    i=0;
     do 
     {
+        if(i>0) printf("\nINVALID (TYPE \"EXIT\" TO EXIT) \n");
         printf("Enter Remarks (30 max length): ");
         scanf(" %[^\n]", bucketlist[*n].remarks);
-    } while(InputValidation(bucketlist[*n].remarks, 30));
+        if (!strcmp(temp, "EXIT")) return;
+    } while(inputValidation(bucketlist[*n].remarks, 30));
 
     do
     {
@@ -64,9 +68,10 @@ deleteGoal(goal* bucketlist, int *n)
     printf("\nEnter shortname of goal you would like to delete");
     do
     {
-        if(i>0) printf("\nINVALID\n");
+        if(i>0) printf("\nINVALID (TYPE \"EXIT\" TO EXIT) \n");
         printf("\nSHORTNAME (CASE SENSITIVE): ");
         scanf(" %s", temp);
+        if (!strcmp(temp, "EXIT")) return;
         i++;
     } while(!shortNameValidationGoal(bucketlist, temp, n));
 
@@ -90,9 +95,10 @@ editGoal(goal* bucketlist, int *n)
     printf("\nEnter shortname of goal you would like to delete");
     do
     {
-        if(i>0) printf("\nINVALID\n");
+        if(i>0) printf("\nINVALID (TYPE \"EXIT\" TO EXIT) \n");
         printf("\nSHORTNAME (CASE SENSITIVE): ");
         scanf(" %s", temp);
+        if (!strcmp(temp, "EXIT")) return;
         i++;
     } while(!shortNameValidationGoal(bucketlist, temp, n));
 
@@ -143,10 +149,11 @@ changeAchieved(goal* bucketlist, int *n)
     printf("\nEnter shortname of goal to mark/unmark as achieved");
     do
     {
-        if(i>0) printf("\nINVALID\n");
+        if(i>0) printf("\nINVALID (TYPE \"EXIT\" TO EXIT) \n");
         printf("\nSHORTNAME (CASE SENSITIVE): ");
         scanf(" %s", temp);
         i++;
+        if (!strcmp(temp, "EXIT")) return;
     } while(!shortNameValidationGoal(bucketlist, temp, n));
 
     for (i=0;i<*n;i++)
