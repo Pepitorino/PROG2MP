@@ -1,3 +1,6 @@
+/* Checks if all files exist, if it doesnt it creates it and prints one(1) newline in it 
+Precondition: no precondition
+*/
 void 
 checkFiles ()
 {
@@ -33,6 +36,10 @@ checkFiles ()
     fclose(trips);
 }
 
+/* Initializes information for the array of destinations
+@param data - array where data is to be initialized
+Precondition: destination.txt exists
+*/
 int
 destInit (destination* data)
 {
@@ -56,6 +63,10 @@ destInit (destination* data)
     return n;
 }
 
+/* Initializes information for the array of goals
+@param data - array where data is to be initialized
+Precondition: bucketlist.txt exists
+*/
 int 
 buckInit (goal* data)
 {
@@ -78,8 +89,12 @@ buckInit (goal* data)
     return num;
 }
 
+/* Initializes information for the array of trips
+@param data - array where data is to be initialized
+Precondition: trips.txt exists
+*/
 int 
-tripInit (travelPlan* trips)
+tripInit (travelPlan* data)
 {
     int i=0;    
     int num=-1;
@@ -89,13 +104,18 @@ tripInit (travelPlan* trips)
 
     for (i=0;!feof(f1);i++)
     {
-        fscanf(f1, " %[^\n]", trips[i].shortName);
+        fscanf(f1, " %[^\n]", data[i].shortName);
         num++;
     }
 
     return num;
 }
 
+/* Initializes information of the itinerary linked list for each trip
+@param trips - array where data of itinerary is to be initialized to each element
+@param n - number of elements in trips
+Precondition: trips.txt exists
+*/
 void
 iteInit (travelPlan* trips, 
         int n)
@@ -136,7 +156,15 @@ iteInit (travelPlan* trips,
     }
 }
 
-
+/* Shortcut to initalize all information
+@param dest - array of destinations
+@param bucketlist - array of goals
+@param trips - array of travelPlans
+@param destnum - number of destinations
+@param bucketlistnum - number of goals
+@param tripnum - number of trips
+Precondtion: no precondition
+*/
 void
 init (destination* dest, 
         goal* bucketlist, 

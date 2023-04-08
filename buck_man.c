@@ -1,5 +1,12 @@
+/* Prints out all the information of the elements in the bucketlist
+@param bucketlist - array of goals
+@param n - number of elements in the bucketlist
+@return none
+Precondition: all parameters are initialized
+*/
 void 
-displayBucketlist(goal* bucketlist, int n)
+displayBucketlist(goal* bucketlist, 
+                    int n)
 {
     int i=0;
     for(i=0;i<n;i++)
@@ -13,8 +20,18 @@ displayBucketlist(goal* bucketlist, int n)
     return;
 }
 
+/* Adds a goal to the front of the bucketlist
+@param destinations - used to check if the goal to be added is present in destinations
+@param bucketlist - array to which the goal will be added to
+@param n - number of elements in the bucketlist, incremented by one afterwards
+@param dn - number of elements in destinations
+Precondition: bucketlist is not already full
+*/
 void
-addGoal(destination* destinations, goal* bucketlist, int *n, int *dn)
+addGoal(destination* destinations, 
+        goal* bucketlist, 
+        int *n, 
+        int *dn)
 {
     char choice;
     int i=0;
@@ -60,8 +77,14 @@ addGoal(destination* destinations, goal* bucketlist, int *n, int *dn)
     *n+=1;
 }
 
+/* Deletes a goal from the bucketlist 
+@param bucketlist - array with the goal to be deleted
+@param n - number of elements in the bucketlist, decremented by one after deletion
+Precondition: bucketlist is not empty
+*/
 void
-deleteGoal(goal* bucketlist, int *n)
+deleteGoal(goal* bucketlist, 
+            int *n)
 {
     str_t temp;
     int i=0;
@@ -86,8 +109,14 @@ deleteGoal(goal* bucketlist, int *n)
     }
 }
 
+/* Edits a goal from the bucketlist 
+@param bucketlist - array of goals
+@param n - number of elements in the bucketlist
+Precondition: bucketlist is not empty
+*/
 void
-editGoal(goal* bucketlist, int *n)
+editGoal(goal* bucketlist, 
+            int *n)
 {
     str_t temp;
     int i=0;
@@ -141,8 +170,14 @@ editGoal(goal* bucketlist, int *n)
     }
 }
 
+/* Marks a goal from the bucketlist as achieved or unachieved
+@param bucketlist - array with goal to be marked
+@param n - number of elements in the bucketlist
+Precondition: bucketlist is not empty
+*/
 void
-changeAchieved(goal* bucketlist, int *n)
+changeAchieved(goal* bucketlist, 
+                int *n)
 {
     str_t temp;
     int i=0;
@@ -167,8 +202,18 @@ changeAchieved(goal* bucketlist, int *n)
 
 }
 
+/*Menu to access functions to add/delete/edit elements in the bucketlist
+@param destinations - array of destinations
+@param bucketlist - array of goals
+@param n - number of elements in bucketlist
+@param dn - number of elements in destinations
+Precondition: all parameters are initialized
+*/
 void
-buckMenu(destination* destinations, goal* bucketlist, int *n, int* dn)
+buckMenu(destination* destinations, 
+            goal* bucketlist, 
+            int *n, 
+            int* dn)
 {
     int choice;
     do

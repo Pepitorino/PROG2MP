@@ -1,5 +1,13 @@
+/*Checks if date is a real, valid date
+@param m - month of date
+@param d - day of date
+@param y - year of date
+Precondition: no precondition
+*/
 int
-validateDate(int m, int d, int y)
+validateDate(int m, 
+            int d, 
+            int y)
 {
     switch(m)
     {
@@ -29,6 +37,10 @@ validateDate(int m, int d, int y)
     return 0;
 }
 
+/*Checks if the inputted date string is valid
+@param text - date
+Precondition: no precondition
+*/
 int
 inputDate(str_t text)
 {
@@ -58,6 +70,10 @@ inputDate(str_t text)
     return validateDate(m,d,y);
 }
 
+/*Checks if the inputted rating is valid
+@param f - float value to be checked
+Precondition: no precondition
+*/
 int
 inputRatingValidation(float f)
 {
@@ -66,13 +82,25 @@ inputRatingValidation(float f)
     return 0;
 }
 
+/*Checks if the inputted string is not too long
+@param text - string to be checked
+@param n - character limiit
+Precondition: no precondition
+*/
 int
-inputValidation(str_t text, int n)
+inputValidation(str_t text, 
+                int n)
 {
     if (strlen(text)>n) return 1;
     return 0;
 }
 
+/*Checks if shortName is already in array given
+@param data - array to be checked
+@param temp - shortName to be checked if it already exists
+@param n - number of elements in array
+Precondition: no precondition
+*/
 int shortNameValidationDestination(destination* data, 
                         str_t temp, 
                         int *n)
@@ -85,6 +113,12 @@ int shortNameValidationDestination(destination* data,
     return 0;
 }
 
+/*Checks if shortName is already in array given
+@param data - array to be checked
+@param temp - shortName to be checked if it already exists
+@param n - number of elements in array
+Precondition: no precondition
+*/
 int shortNameValidationGoal(goal* data, 
                         str_t temp, 
                         int *n)
@@ -97,6 +131,12 @@ int shortNameValidationGoal(goal* data,
     return 0;
 }
 
+/*Checks if shortName is already in array given
+@param data - array to be checked
+@param temp - shortName to be checked if it already exists
+@param n - number of elements in array
+Precondition: no precondition
+*/
 int shortNameValidationTrip(travelPlan* data,
                             str_t temp,
                             int *n)
@@ -109,6 +149,12 @@ int shortNameValidationTrip(travelPlan* data,
     return 0;
 }
 
+/*Checks if startDate is already in array given
+@param data - array to be checked
+@param temp - shortName to be checked if it already exists
+@param n - number of elements in array
+Precondition: no precondition
+*/
 int startDateValidationTrip(travelPlan* data,
                             str_t temp,
                             int *n)
@@ -121,6 +167,10 @@ int startDateValidationTrip(travelPlan* data,
     return 0;
 }
 
+/*Checks if character entered is yes or no
+@param c - char to be checked
+Precondition: no precondition
+*/
 int checkYesOrNo(char c)
 {
     switch(c)

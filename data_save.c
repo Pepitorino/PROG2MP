@@ -1,5 +1,6 @@
 void
-saveDest (destination* data, int n)
+saveDest (destination* data, 
+            int n)
 {
     int i=0;
 
@@ -19,7 +20,8 @@ saveDest (destination* data, int n)
 }
 
 void
-saveBuck (goal* data, int n)
+saveBuck (goal* data, 
+            int n)
 {
     int i=0;
 
@@ -38,7 +40,8 @@ saveBuck (goal* data, int n)
 }
 
 void
-saveIte (travelPlan* trips, int n)
+saveIte (travelPlan* trips, 
+            int n)
 {
     int i=0, j=0;
     FILE* f1;
@@ -71,7 +74,8 @@ saveIte (travelPlan* trips, int n)
 }
 
 void
-saveTrip (travelPlan* trips, int n)
+saveTrip (travelPlan* trips, 
+            int n)
 {
     int i=0;    
 

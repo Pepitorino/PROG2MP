@@ -1,3 +1,9 @@
+/* Prints out shortname and rating of the elements in trips
+@param trips - array of travelPlans
+@param n - number of elements in the trips
+@return none
+Precondition: all parameters are initialized
+*/
 void
 displayTrips(travelPlan* trips, 
             int n)
@@ -12,6 +18,11 @@ displayTrips(travelPlan* trips,
     return;
 }
 
+/* Prints out full information of a travelPlan and its itinerary
+@param trips - array of travelPlan
+@param n - number of trips
+Precondition: all parameters are initialized
+*/
 void
 viewIte(travelPlan* trips, 
         int *n)
@@ -52,6 +63,13 @@ viewIte(travelPlan* trips,
 
 }
 
+/* Adds a goal to the front of trips
+@param destinations - used to check if the trip to be added is present in destinations
+@param trips - array to which the travelPlan will be added to
+@param n - number of elements in trips, incremented by one afterwards
+@param dn - number of elements in destinations
+Precondition: trips is not already full
+*/
 void
 addTrip(destination* destinations,
         travelPlan* trips, 
@@ -133,6 +151,11 @@ addTrip(destination* destinations,
         *n+=1;
 }
 
+/* Deletes a goal from the trips 
+@param trips - array with the goal to be deleted
+@param n - number of elements in the trips, decremented by one after deletion
+Precondition: trips is not empty
+*/
 void
 deleteTrip(travelPlan* trips, 
             int *n)
@@ -176,6 +199,11 @@ deleteTrip(travelPlan* trips,
         }
 }
 
+/* Adds a day to a travelPlan's itinerary 
+@param trips - array with the trip to be edited
+@param n - index number of trip to be edited
+Precondition: trips is not empty
+*/
 void
 addDay(travelPlan* trips, 
         int n)
@@ -209,6 +237,12 @@ addDay(travelPlan* trips,
         trips[n].days+=1;
 }
 
+/* Deletes a day from the travelPlan's itinerary 
+@param day - day to be deleted
+@param trips - array with the trip to be edited
+@param n - index number of trip to be edited
+Precondition: trips is not empty
+*/
 void
 deleteDay(int day, 
         travelPlan* trips, 
@@ -234,6 +268,11 @@ deleteDay(int day,
         trips[n].itinerary=trips[n].start;
 }
 
+/* Edits a day in an itinerary of a travelPlan
+@param trips - array of travelPlans
+@param n - index number of trip to be edited
+Precondition: trips is not empty
+*/
 void
 editDay(int day, 
         travelPlan* trips, 
@@ -284,6 +323,11 @@ editDay(int day,
         trips[n].itinerary=trips[n].start;
 }
 
+/* Edits an itinerary of a travelPlan
+@param trips - array of travelPlans
+@param n - index number of trip to be edited
+Precondition: trips is not empty
+*/
 void
 editIte(travelPlan* trips, 
         int n)
@@ -338,6 +382,11 @@ editIte(travelPlan* trips,
         
 }
 
+/* Edits a travelPlan in trips
+@param trips - array of travelPlans
+@param n - number of trips
+Precondition: trips is not empty
+*/
 void
 editTrip(travelPlan* trips, 
         int *n)
@@ -387,7 +436,11 @@ editTrip(travelPlan* trips,
         }
 }
 
-
+/* Rates a travelPlan in trips
+@param trips - array of travelPlans
+@param n - number of trips
+Precondition: trips is not empty
+*/
 void
 rateTrip(travelPlan* trips, 
         int *n)
@@ -422,6 +475,13 @@ rateTrip(travelPlan* trips,
         }
 }
 
+/*Menu to access functions to add/delete/edit elements in trips
+@param destinations - array of destinations
+@param trips - array of travelPlans
+@param n - number of elements in trips
+@param dn - number of elements in destinations
+Precondition: all parameters are initialized
+*/
 void
 tripMenu(destination* destinations, 
         travelPlan* trips, 

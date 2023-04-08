@@ -1,3 +1,9 @@
+/* Prints out shortname and longname of all destinations
+@param dest - arrray of destinations
+@param n - number of elements in the destination
+@return none
+Precondition: all parameters are initialized
+*/
 void
 shortDisplay(destination* dest, 
             int n)
@@ -11,6 +17,12 @@ shortDisplay(destination* dest,
     return;
 }
 
+/* Prints out all information of all destinations
+@param dest - array of destinations
+@param n - number of elements in the destination
+@return none
+Precondition: all parameters are initialized
+*/
 void
 longDisplay(destination* dest, 
             int n)
@@ -27,6 +39,11 @@ longDisplay(destination* dest,
     return;
 }
 
+/*  Adds a goal to the front of the destinations array
+@param dest - array of destinations
+@param n - number of destinations, incremented by one afterwards
+Precondition: dest is not already full
+*/
 void
 addDestination(destination* dest,
             int *n)
@@ -85,6 +102,11 @@ addDestination(destination* dest,
     *n+=1;
 }
 
+/* Deletes a goal from the destinations 
+@param dest - array with the destination to be deleted
+@param n - number of elements in the destinations, decremented by one after deletion
+Precondition: dest is not empty
+*/
 void
 deleteDestination(destination* dest,
             int *n)
@@ -113,6 +135,11 @@ deleteDestination(destination* dest,
     
 }
 
+/* Edits a goal from the destinations 
+@param dest - array with the destination to be edits
+@param n - number of elements in the destinations
+Precondition: dest is not empty
+*/
 void
 editDestination(destination* dest,
             int *n)
@@ -192,6 +219,11 @@ editDestination(destination* dest,
     }
 }
 
+/*Menu to access functions to add/delete/edit elements in the dest array
+@param dest - array of destinations
+@param n - number of elements in destinations
+Precondition: all parameters are initialized
+*/
 void
 destMenu(destination* dest,
         int *n)

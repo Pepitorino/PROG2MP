@@ -1,5 +1,7 @@
+
 int
-shortNameValidationTempGoal(goal* data, str_t temp)
+shortNameValidationTempGoal(goal* data, 
+                            str_t temp)
 {
     int i=0;
     for (i=0;i<3;i++)
@@ -10,7 +12,8 @@ shortNameValidationTempGoal(goal* data, str_t temp)
 }
 
 int
-shortNameValidationTempTrip(travelPlan* data, str_t temp)
+shortNameValidationTempTrip(travelPlan* data, 
+                            str_t temp)
 {
     int i=0;
     for (i=0;i<3;i++)
@@ -104,7 +107,8 @@ topthreedest(destination* dest,
 }
 
 void
-bucketlistProgress(goal*bucketlist, int bn)
+bucketlistProgress(goal*bucketlist, 
+                    int bn)
 {
     int i=0;
     int counter=0;
