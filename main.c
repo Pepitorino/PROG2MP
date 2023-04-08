@@ -7,6 +7,7 @@
 #include "dest_man.c"
 #include "trip_man.c"
 #include "buck_man.c"
+#include "dashboard.c"
 #include "data_save.c"
 
 void
@@ -32,22 +33,21 @@ mainMenu(destination* dest,
     int choice;
     do
     {
-        printMenu();
         do {
+        printMenu();
         printf("\nWHERE WOULD YOU LIKE TO GO? (1-5): ");
         scanf("%d", &choice);
         if (choice<1||choice>5) printf("\nINVALID CHOICE\n");
         } while (choice<1||choice>5);
+
         switch (choice)
         {
-        case 1:
-            /* code */
-            break;
-        case 2: destMenu(dest, destnum); break;
-        case 3: buckMenu(dest, bucketlist, bucketlistnum, destnum); break;
-        case 4: tripMenu(dest, trips, tripnum, destnum); break;
-        case 5: break;
-        default: printf("\nINVALID\n");
+            case 1: dashboard(dest, bucketlist, trips, *destnum, *bucketlistnum, *tripnum); break;
+            case 2: destMenu(dest, destnum); break;
+            case 3: buckMenu(dest, bucketlist, bucketlistnum, destnum); break;
+            case 4: tripMenu(dest, trips, tripnum, destnum); break;
+            case 5: break;
+            default: printf("\nINVALID\n");
         }
 
     } while (choice!=5);

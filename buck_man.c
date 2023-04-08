@@ -187,13 +187,24 @@ buckMenu(destination* destinations, goal* bucketlist, int *n, int* dn)
         switch(choice)
         {
             case 1: 
-                if(*n<10) displayBucketlist(bucketlist, *n); 
+                displayBucketlist(bucketlist, *n); 
+                break;
+            case 2: 
+                if(*n<10) addGoal(destinations, bucketlist, n, dn); 
                 else printf("MAX NUMBER OF GOALS REACHED");
                 break;
-            case 2: addGoal(destinations, bucketlist, n, dn); break;
-            case 3: deleteGoal(bucketlist, n); break;
-            case 4: editGoal(bucketlist, n); break;
-            case 5: changeAchieved(bucketlist, n); break;
+            case 3: 
+                if (*n>0) deleteGoal(bucketlist, n); 
+                else printf("NO GOALS TO DELETE");
+                break;
+            case 4: 
+                if (*n>0) editGoal(bucketlist, n); 
+                else printf("NO GOALS TO EDIT");
+                break;
+            case 5: 
+                if (*n>0) changeAchieved(bucketlist, n); 
+                else printf("NO GOALS TO EDIT");
+                break;
             case 6: break;
             default: printf("\nINVALID\n");
         }

@@ -1,5 +1,3 @@
-#include "types.h"
-
 int
 validateDate(int m, int d, int y)
 {

@@ -38,10 +38,10 @@ viewIte(travelPlan* trips,
                         printf("\nComments: %s", trips[i].comments);
                         for(j=0; j<trips[i].days; j++)
                         {
-                                printf("\nDay %d Itinerary", trips[i].itinerary->day);
-                                printf(" \n%s", trips[i].itinerary->morning);
-                                printf(" \n%s", trips[i].itinerary->afternoon);
-                                printf(" \n%s", trips[i].itinerary->evening);                                
+                                printf("\n\nDay %d Itinerary", trips[i].itinerary->day);
+                                printf("\n%s", trips[i].itinerary->morning);
+                                printf("\n%s", trips[i].itinerary->afternoon);
+                                printf("\n%s", trips[i].itinerary->evening);                                
                                 trips[i].itinerary=trips[i].itinerary->next;
                         }
                         trips[i].itinerary=trips[i].start;

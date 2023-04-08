@@ -1,6 +1,3 @@
-#include "types.h"
-#include <stdio.h>
-
 void
 saveDest (destination* data, int n)
 {
