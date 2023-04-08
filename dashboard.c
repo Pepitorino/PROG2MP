@@ -55,7 +55,7 @@ topthreebucketlist(destination* dest,
     printf("\nTOP 3 BUCKETLIST DESTINATIONS");
     printf("\nSHORTNAME\tLONGNAME\tPRIORITY");
 
-    for(i=0;i<3&&i<bn;i++)
+    for(i=0;i<3;i++)
     {
         printf("\n%s\t\t%s\t\t%d",temp[i].shortName, longname[i], temp[i].prioRank);
     }

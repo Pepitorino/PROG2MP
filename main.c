@@ -19,7 +19,8 @@ printMenu()
     printf("\n2. DESTINATION LIST MANAGEMENT");
     printf("\n3. BUCKET LIST MANAGEMENT");
     printf("\n4. TRIP MANAGEMENT");
-    printf("\n5. QUIT");
+    printf("\n5. SAVE CHANGES");
+    printf("\n6. QUIT");
 }
 
 void 
@@ -37,8 +38,8 @@ mainMenu(destination* dest,
         printMenu();
         printf("\nWHERE WOULD YOU LIKE TO GO? (1-5): ");
         scanf("%d", &choice);
-        if (choice<1||choice>5) printf("\nINVALID CHOICE\n");
-        } while (choice<1||choice>5);
+        if (choice<1||choice>6) printf("\nINVALID CHOICE\n");
+        } while (choice<1||choice>6);
 
         switch (choice)
         {
@@ -46,11 +47,15 @@ mainMenu(destination* dest,
             case 2: destMenu(dest, destnum); break;
             case 3: buckMenu(dest, bucketlist, bucketlistnum, destnum); break;
             case 4: tripMenu(dest, trips, tripnum, destnum); break;
-            case 5: break;
+            case 5: 
+                save(dest, bucketlist, trips, destnum, bucketlistnum, tripnum);
+                printf("\nCHANGES SAVED\n");
+                break;
+            case 6: break;
             default: printf("\nINVALID\n");
         }
 
-    } while (choice!=5);
+    } while (choice!=6);
     
 }
 
