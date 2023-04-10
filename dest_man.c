@@ -14,6 +14,7 @@ shortDisplay(destination* dest,
         printf("\n%s", dest[i].shortName);
         printf("\n- %s",  dest[i].longName);
     }
+    if (n=0) printf("\nNO DESTINATIONS\n");
     return;
 }
 
@@ -36,6 +37,7 @@ longDisplay(destination* dest,
         printf("\n- %s",  dest[i].geoGroup);
         printf("\n- %s",  dest[i].toDo);
     }
+    if (n=0) printf("\nNO DESTINATIONS\n");
     return;
 }
 

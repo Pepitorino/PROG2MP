@@ -17,6 +17,7 @@ displayBucketlist(goal* bucketlist,
         if (bucketlist[i].flag==1)printf("\n- Achieved");
         else printf("\n- Yet to be Achieved");
     }
+    if (n=0) printf("\nNO GOALS\n");
     return;
 }
 

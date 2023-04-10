@@ -78,7 +78,7 @@ int
 inputRatingValidation(float f)
 {
     if (f<=5&&f>=0)
-        if (!(((int)(f*10))%5)) return 1;
+        if (!(((int)(f*100))%50)) return 1;
     return 0;
 }
 
@@ -97,7 +97,7 @@ inputValidation(str_t text,
 
 /*Checks if shortName is already in array given
 @param data - array to be checked
-@param temp - shortName to be checked if it already exists
+@param temp - shortName to be checked if it already exists in data
 @param n - number of elements in array
 Precondition: no precondition
 */
@@ -115,7 +115,7 @@ int shortNameValidationDestination(destination* data,
 
 /*Checks if shortName is already in array given
 @param data - array to be checked
-@param temp - shortName to be checked if it already exists
+@param temp - shortName to be checked if it already exists in data
 @param n - number of elements in array
 Precondition: no precondition
 */
@@ -151,7 +151,7 @@ int shortNameValidationTrip(travelPlan* data,
 
 /*Checks if startDate is already in array given
 @param data - array to be checked
-@param temp - shortName to be checked if it already exists
+@param temp - shortName to be checked if it already exists in data
 @param n - number of elements in array
 Precondition: no precondition
 */

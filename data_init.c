@@ -38,7 +38,7 @@ checkFiles ()
 
 /* Initializes information for the array of destinations
 @param data - array where data is to be initialized
-Precondition: destination.txt exists
+Precondition: Data is a big enough array to store all the information found in destination.txt
 */
 int
 destInit (destination* data)
@@ -65,7 +65,7 @@ destInit (destination* data)
 
 /* Initializes information for the array of goals
 @param data - array where data is to be initialized
-Precondition: bucketlist.txt exists
+Precondition: Data is a big enough array to store all the information found in bucketlist.txt
 */
 int 
 buckInit (goal* data)
@@ -91,7 +91,7 @@ buckInit (goal* data)
 
 /* Initializes information for the array of trips
 @param data - array where data is to be initialized
-Precondition: trips.txt exists
+Precondition: Data is a big enough array to store all the information found in trips.txt
 */
 int 
 tripInit (travelPlan* data)
@@ -114,7 +114,7 @@ tripInit (travelPlan* data)
 /* Initializes information of the itinerary linked list for each trip
 @param trips - array where data of itinerary is to be initialized to each element
 @param n - number of elements in trips
-Precondition: trips.txt exists
+Precondition: No precondition
 */
 void
 iteInit (travelPlan* trips, 
@@ -130,6 +130,12 @@ iteInit (travelPlan* trips,
         strcpy(temp, trips[i].shortName);
         strcat(temp, "-itinerary.txt");
         f1=fopen(temp, "r");
+
+        if (f1==NULL)
+        {
+            trips[i].days=0;
+            return;
+        }
 
         trips[i].itinerary=calloc(1, sizeof(itinerary));
         trips[i].start=trips[i].itinerary;

@@ -18,6 +18,9 @@ Ambrosio, Carlos Felipe Q. , DLSU ID# 12275964
 #include "dashboard.c"
 #include "data_save.c"
 
+/* Prints Menu Options
+Precondition: no precondition
+*/
 void
 printMenu()
 {
@@ -31,6 +34,15 @@ printMenu()
     printf("\n6. QUIT");
 }
 
+/* Allows access to the rest of the Menus in the other functions
+@param dest - array of destinations
+@param bucketlist - array of goals
+@param trips - array of travelPlans
+@param destnum - number of destinations
+@param bucketlistnum - number of goals
+@param tripnum - number of trips
+Precondtion: no precondition
+*/
 void 
 mainMenu(destination* dest, 
         goal* bucketlist, 

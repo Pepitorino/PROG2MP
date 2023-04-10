@@ -15,6 +15,7 @@ displayTrips(travelPlan* trips,
         if (trips[i].rating>-1) printf("\n- %.1f",  trips[i].rating);
         else printf("\n- No rating available");
     }
+    if (n==0) printf("\nNO TRIPS");
     return;
 }
 
@@ -32,10 +33,11 @@ viewIte(travelPlan* trips,
 
         do
         {
-                if (i>0) printf("\nINVALID\n");
+                if (i>0) printf("\nINVALID TYPE \"EXIT\" TO EXIT\n");
                 printf("\nEnter Shortname of Trip to View: ");
                 scanf(" %s%*[^\n]", temp);
                 i++;
+                if(!strcmp(temp, "EXIT")) return;
         } while (!shortNameValidationTrip(trips, temp, n));
         
         for (i=0;i<*n;i++)
@@ -509,7 +511,10 @@ tripMenu(destination* destinations,
                                 if (*n>0) displayTrips(trips, *n); 
                                 else printf("\nNO TRIPS TO DISPLAY\n");
                                 break;
-                        case 2: viewIte(trips, n); break;
+                        case 2: 
+                                if (*n>0) viewIte(trips, n); 
+                                else printf("\nNO TRIPS TO DISPLAY\n");
+                                break;
                         case 3: 
                                 if (*n<*dn) addTrip(destinations, trips, n, dn);
                                 else printf("\nALL DESTINATIONS HAVE A TRIP\n");

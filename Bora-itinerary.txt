@@ -9,3 +9,11 @@ Beach
 Evening
 Barbeque
 
+Day2
+Morning
+Eat food
+Afternoon
+Island Hopping
+Evening
+Hang out with friends
+

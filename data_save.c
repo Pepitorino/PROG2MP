@@ -1,3 +1,9 @@
+/* Saves destinations by writing to destination.txt file
+@param data - array of destinations to be saved
+@param n - number of destinations to be saved
+Precondition: N is a number equal to the number of elements present in data or 0
+            it cannot be 0
+*/
 void
 saveDest (destination* data, 
             int n)
@@ -19,6 +25,12 @@ saveDest (destination* data,
     fclose(f1);
 }
 
+/* Saves goals by writing to bucketlist.txt file
+@param data - array of goals to be saved
+@param n - number of goals to be saved
+Precondition: N is a number equal to the number of elements present in data or 0
+            it cannot be 0
+*/
 void
 saveBuck (goal* data, 
             int n)
@@ -39,6 +51,12 @@ saveBuck (goal* data,
     fclose(f1);
 }
 
+/* Saves itineraries by writing to respective <shortName>-itinerary.txt file
+@param trips - array of travelPlans who's itineraries are to be saved
+@param n - number of travelPlans to be saved
+Precondition: N is a number equal to the number of elements present in trips or 0
+            it cannot be 0
+*/
 void
 saveIte (travelPlan* trips, 
             int n)
@@ -73,8 +91,14 @@ saveIte (travelPlan* trips,
     }
 }
 
+/* Saves trips by writing to trips.txt file
+@param data - array of travelPlans to be saved
+@param n - number of travelPlans to be saved
+Precondition: N is a number equal to the number of elements present in data or 0
+            it cannot be 0
+*/
 void
-saveTrip (travelPlan* trips, 
+saveTrip (travelPlan* data, 
             int n)
 {
     int i=0;    
@@ -84,12 +108,21 @@ saveTrip (travelPlan* trips,
 
     for (i=0;i<n;i++)
     {
-        fprintf(f1, " %s\n", trips[i].shortName);
+        fprintf(f1, " %s\n", data[i].shortName);
     }
 
     fclose(f1);
 }
 
+/* Calls all "saving" functions found above
+@param dest - array of destinations to be saved
+@param bucketlist - array of goals to be saved
+@param trips - array of travelPlans to be saved
+@param destnum - number of destinations
+@param bucketlistnum - number of goals
+@param tripnum - number of travelPlans
+Precondition: No precondition
+*/
 void
 save(destination* dest, 
         goal* bucketlist, 
